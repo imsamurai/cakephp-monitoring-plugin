@@ -21,6 +21,8 @@ then add plugin loading in Config/bootstrap.php
 
 add tables from `Config/Schema/monitoring.sql`
 
+include https://github.com/symfony/Process in your project, for ex with composer (tested with 2.3 version)
+
 ## Usage
 
 Use `Monitoring` model for manage checkers in DB.
