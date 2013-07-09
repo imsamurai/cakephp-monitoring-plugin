@@ -24,6 +24,7 @@ class MonitoringSelfCheck extends MonitoringChecker {
 	 * Check monitoring plugin
 	 */
 	public function check() {
+		throw new Exception('lalal');
 		return true;
 	}
 

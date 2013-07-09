@@ -6,11 +6,12 @@
  * Time: 16:30:00
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
+App::uses('AppMonitoringModel', 'Monitoring.Model');
 
 /**
  * @package Monitoring.Model
  */
-class MonitoringLog extends AppModel {
+class MonitoringLog extends AppMonitoringModel {
 
 	/**
 	 * {@inheritdoc}

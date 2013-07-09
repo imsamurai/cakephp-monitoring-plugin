@@ -7,10 +7,12 @@
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
 
+App::uses('AppMonitoringModel', 'Monitoring.Model');
+
 /**
  * @package Monitoring.Model
  */
-class Monitoring extends AppModel {
+class Monitoring extends AppMonitoringModel {
 
 	/**
 	 * {@inheritdoc}
@@ -75,12 +77,15 @@ class Monitoring extends AppModel {
 		$checkers = $this->find('all', array(
 			'conditions' => array(
 				'active' => 1,
-				'next_run_date <=' => date('Y-m-d H:i:s')
+				'OR' => array(
+					'next_run_date <=' => date('Y-m-d H:i:s'),
+					'next_run_date' => null
+				)
+
 			),
 			'order' => array(
 				'priority' => 'DESC'
-			),
-			'recursive' => -1
+			)
 		));
 
 		return (array) Hash::extract($checkers, '{n}.'.$this->alias);

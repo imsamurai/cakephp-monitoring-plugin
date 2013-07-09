@@ -6,13 +6,12 @@
  * Time: 16:30:00
  * Format: http://book.cakephp.org/2.0/en/console-and-shells.html#creating-a-shell
  */
-
-App::uses('AppShell', 'Monitoring.Console/Command');
+App::uses('AppMonitoringShell', 'Monitoring.Console/Command');
 
 /**
  * @package Monitoring.Console.Command
  */
-class MonitoringShell extends AppShell {
+class MonitoringShell extends AppMonitoringShell {
 
 	public $enabledTasks = array(
 		'Checkers',
@@ -25,11 +24,17 @@ class MonitoringShell extends AppShell {
 
 		foreach ($this->enabledTasks as $task_name) {
 			$parser->addSubcommand(Inflector::underscore($task_name), array(
-				'help' => $this->Tasks->load($this->pluginName.'.'.$task_name)->getOptionParser()->description(),
-				'parser' => $this->Tasks->load($this->pluginName.'.'.$task_name)->getOptionParser()
+				'help' => $this->Tasks->load($this->pluginName . '.' . $task_name)->getOptionParser()->description(),
+				'parser' => $this->Tasks->load($this->pluginName . '.' . $task_name)->getOptionParser()
 			));
 		}
 		return $parser;
+	}
+
+	public function startup() {
+		if (!$this->params['silent']) {
+			parent::startup();
+		}
 	}
 
 }

@@ -24,7 +24,7 @@ class MonitoringFixture extends CakeTestFixture {
 		'last_check' => array('type' => 'datetime', 'null' => false),
 		'active' => array('type' => 'integer', 'null' => false, 'default' => 0, 'length' => 1),
 		'priority' => array('type' => 'integer', 'null' => false, 'default' => 0, 'length' => 10),
-		'emails' => array('type' => 'integer', 'null' => false, 'default' => ''),
+		'emails' => array('type' => 'string', 'null' => false, 'default' => ''),
 		'created' => array('type' => 'datetime', 'null' => false),
 		'modified' => array('type' => 'datetime', 'null' => false),
 	);

@@ -6,12 +6,12 @@
  * Time: 19:33:53
  * Format: http://book.cakephp.org/2.0/en/console-and-shells.html#shell-tasks
  */
-App::uses('AppShell', 'Monitoring.Console/Command');
+App::uses('AppMonitoringShell', 'Monitoring.Console/Command');
 
 /**
  * @package Monitoring.Console.Command.Task
  */
-class RunCheckerTask extends AppShell {
+class RunCheckerTask extends AppMonitoringShell {
 
 	/**
 	 * {@inheritdoc}

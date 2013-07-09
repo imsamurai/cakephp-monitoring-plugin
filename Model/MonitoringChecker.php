@@ -7,10 +7,12 @@
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
 
+App::uses('AppMonitoringModel', 'Monitoring.Model');
+
 /**
  * @package Monitoring.Model
  */
-abstract class MonitoringChecker extends AppModel {
+abstract class MonitoringChecker extends AppMonitoringModel {
 
 	/**
 	 * {@inheritdoc}

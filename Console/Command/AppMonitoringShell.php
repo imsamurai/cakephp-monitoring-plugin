@@ -10,11 +10,10 @@
 /**
  * @package Monitoring.Console.Command
  */
-class AppShell extends Shell {
+class AppMonitoringShell extends AppShell {
 
 	public $tasks = array();
 	public $uses = array();
-
 	public $pluginName = 'Monitoring';
 
 	public function runCommand($command, $argv) {
@@ -30,7 +29,7 @@ class AppShell extends Shell {
 				return $out;
 			}
 
-			$this->tasks = array($this->pluginName.'.'.Inflector::camelize($command));
+			$this->tasks = array($this->pluginName . '.' . Inflector::camelize($command));
 			$this->loadTasks();
 			$out = parent::runCommand($command, $argv);
 			return $out;
@@ -47,10 +46,15 @@ class AppShell extends Shell {
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
 		$parser->addOption('debug', array(
-					'help' => 'Sets debug level',
-					'short' => 'd'
-				))
-		;
+			'help' => 'Sets debug level',
+			'short' => 'd'
+		))->addOption('silent', array(
+			'help' => 'Removes banner',
+			'short' => 's',
+			'boolean' => true,
+			'default' => true
+		));
+
 		return $parser;
 	}
 

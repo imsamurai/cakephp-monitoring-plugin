@@ -47,6 +47,7 @@ class MonitoringTest extends CakeTestCase {
 			'name' => 'Test2',
 			'active' => 1,
 			'frequency' => 0,
+			'priority' => 0,
 			'last_check' => date('Y-m-d H:i:s')
 		));
 
@@ -58,14 +59,27 @@ class MonitoringTest extends CakeTestCase {
 			'last_check' => date('Y-m-d H:i:s')
 		));
 
+		$this->Monitoring->save(array(
+			'id' => 4,
+			'name' => 'Test4',
+			'active' => 1,
+			'frequency' => 0,
+			'priority' => 1,
+			'last_check' => '0000-00-00 00:00:00'
+		));
+
 		$checkers = $this->Monitoring->getActiveCheckers();
-		$this->assertEquals(2, $checkers[0]['id']);
+		$this->assertEquals(4, $checkers[0]['id']);
+		$this->assertEquals(2, $checkers[1]['id']);
 	}
 
 	public function testSaveCheckResults() {
 		$this->Monitoring->saveCheckResults(1, 1, 'BAD', 'Some errors');
-		$this->Monitoring->recursive = 1;
+		$this->Monitoring->contain(array(
+			'MonitoringLog'
+		));
 		$checker = $this->Monitoring->findById(1);
+		debug($checker);
 		$this->assertEqual($checker['Monitoring']['last_code_string'], 'BAD');
 		$this->assertEqual($checker['MonitoringLog'][1]['code'], 1);
 		$this->assertEqual($checker['MonitoringLog'][1]['code_string'], 'BAD');
