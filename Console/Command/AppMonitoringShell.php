@@ -52,7 +52,7 @@ class AppMonitoringShell extends AppShell {
 			'help' => 'Removes banner',
 			'short' => 's',
 			'boolean' => true,
-			'default' => true
+			'default' => false
 		));
 
 		return $parser;

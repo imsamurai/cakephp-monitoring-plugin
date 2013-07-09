@@ -43,7 +43,8 @@ class CheckersTask extends AppMonitoringShell {
 			$this->out("Start check '{$checker['name']}'");
 			$arguments = $this->_argsToString(array(
 				$checker['name'],
-				'-d' => (int) Configure::read('debug')
+				'-d' => (int) Configure::read('debug'),
+				'-s'
 			));
 			$Process = new Process('Console/cake Monitoring.monitoring run_checker ' . $arguments, APP);
 			$Process->setTimeout($checker['timeout']);
@@ -98,18 +99,24 @@ class CheckersTask extends AppMonitoringShell {
 
 		list($checkerPlugin, $checkerName) = pluginSplit($checker['Monitoring']['name']);
 		if ($checkerPlugin) {
-			$checkerPlugin = Inflector::camelize($checkerPlugin).'.';
+			$checkerPlugin = Inflector::camelize($checkerPlugin) . '.';
 		}
 
 		$Email = new CakeEmail();
 		$Email->config($emailConfig['config'])
 				->to($checker['Monitoring']['emails'])
 				->subject($subject)
-				->template($checkerPlugin.'Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
+				->template($checkerPlugin . 'Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
 				->viewVars(compact('checker'))
 				->emailFormat(CakeEmail::MESSAGE_HTML)
-				->send();
+				->helpers(array('Html', 'Text'))
 		;
+
+		try {
+			$Email->send();
+		} catch (MissingViewException $Exception) {
+			$Email->template('Monitoring.Monitoring/default', 'monitoring')->send();
+		}
 
 		$this->out("Sent mail for '{$checker['Monitoring']['name']}'");
 	}
