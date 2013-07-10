@@ -111,15 +111,15 @@ class CheckersTask extends AppMonitoringShell {
 				->emailFormat(CakeEmail::MESSAGE_HTML)
 				->helpers(array('Html', 'Text'))
 		;
-
+		App::build(array(
+			'View' => array(
+				App::pluginPath('Monitoring') . 'View' . DS
+			)
+		), App::APPEND);
 		try {
 			$Email->send();
 		} catch (MissingViewException $Exception) {
-			try {
-				$Email->template('Monitoring/default', 'monitoring')->send();
-			} catch (MissingViewException $Exception) {
-				$Email->template('Monitoring.Monitoring/default', 'monitoring')->send();
-			}
+			$Email->template($checkerPlugin.'Monitoring/default', 'monitoring')->send();
 		}
 
 		$this->out("Sent mail for '{$checker['Monitoring']['name']}'");
