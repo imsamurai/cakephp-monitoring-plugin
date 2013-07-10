@@ -34,7 +34,7 @@ class Monitoring extends AppMonitoringModel {
 	 * @var array
 	 */
 	public $virtualFields = array(
-		'next_run_date' => 'last_check + INTERVAL frequency MINUTE'
+		'next_run_date' => 'IF(last_check<created, created, last_check) + INTERVAL frequency MINUTE'
 	);
 
 	/**
