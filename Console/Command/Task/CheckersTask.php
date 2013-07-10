@@ -115,7 +115,11 @@ class CheckersTask extends AppMonitoringShell {
 		try {
 			$Email->send();
 		} catch (MissingViewException $Exception) {
-			$Email->template('Monitoring.Monitoring/default', 'monitoring')->send();
+			try {
+				$Email->template('Monitoring/default', 'monitoring')->send();
+			} catch (MissingViewException $Exception) {
+				$Email->template('Monitoring.Monitoring/default', 'monitoring')->send();
+			}
 		}
 
 		$this->out("Sent mail for '{$checker['Monitoring']['name']}'");
