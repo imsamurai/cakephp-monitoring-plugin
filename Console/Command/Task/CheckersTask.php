@@ -102,7 +102,7 @@ class CheckersTask extends AppMonitoringShell {
 			$checkerPlugin = Inflector::camelize($checkerPlugin) . '.';
 		}
 		$emails = explode(',', $checker['Monitoring']['emails']);
-		array_walk($emails, 'trim');
+		$emails = array_map($emails, 'trim');
 		$Email = new CakeEmail();
 		$Email->config($emailConfig['config'])
 				->to($emails)
