@@ -31,16 +31,20 @@ class RunCheckerTask extends AppMonitoringShell {
 	 * Runs checker
 	 */
 	public function execute() {
-		list($plugin, $name) = pluginSplit($this->args[0]);
-		$plugin = Inflector::camelize($plugin);
-		$name = 'Monitoring'.Inflector::camelize($name).'Check';
-		if ($plugin) {
-			$className = "$plugin.$name";
-		} else {
-			$className = $name;
+		try {
+			list($plugin, $name) = pluginSplit($this->args[0]);
+			$plugin = Inflector::camelize($plugin);
+			$name = 'Monitoring'.Inflector::camelize($name).'Check';
+			if ($plugin) {
+				$className = "$plugin.$name";
+			} else {
+				$className = $name;
+			}
+			$Checker = ClassRegistry::init($className);
+			$Checker->check();
+		} catch (Exception $Exception) {
+			throw new Exception($Exception->getMessage());
 		}
-		$Checker = ClassRegistry::init($className);
-		$Checker->check();
 	}
 
 	/**
