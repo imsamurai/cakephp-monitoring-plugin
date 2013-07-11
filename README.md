@@ -3,7 +3,7 @@ Cakephp Monitoring Plugin
 
 Coordinator for any checker scripts.
 With this plugin you can unify periodic checkers for some of your services/data/etc,
-get mail in case of failure, store checker logs in DB.
+get mail in case of failure, store checker logs in DB. 
 
 ## Installation
 
@@ -76,3 +76,5 @@ Each checker name in DB must be a model that extends `MonitoringChecker` and imp
 Coordinator will run this method and store result in DB log.
 In case of error your checker may throw exception.
 Put `Console/cake Monitoring.monitoring checkers` in the cron, for ex each 1-5 minutes (depends on your needs)
+
+Also check out [wiki](https://github.com/imsamurai/cakephp-monitoring-plugin/wiki).
