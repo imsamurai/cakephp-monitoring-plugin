@@ -101,10 +101,11 @@ class CheckersTask extends AppMonitoringShell {
 		if ($checkerPlugin) {
 			$checkerPlugin = Inflector::camelize($checkerPlugin) . '.';
 		}
-
+		$emails = explode(',', $checker['Monitoring']['emails']);
+		array_walk($emails, 'trim');
 		$Email = new CakeEmail();
 		$Email->config($emailConfig['config'])
-				->to(explode(',', $checker['Monitoring']['emails']))
+				->to($emails)
 				->subject($subject)
 				->template($checkerPlugin . 'Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
 				->viewVars(compact('checker'))
