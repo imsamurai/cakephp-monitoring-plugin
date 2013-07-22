@@ -3,7 +3,7 @@ Cakephp Monitoring Plugin
 
 Coordinator for any checker scripts.
 With this plugin you can unify periodic checkers for some of your services/data/etc,
-get mail in case of failure, store checker logs in DB. 
+get mail in case of failure, store checker logs in DB.
 
 ## Installation
 
@@ -21,7 +21,10 @@ then add plugin loading in Config/bootstrap.php
 
 add tables from `Config/Schema/monitoring.sql`
 
-include https://github.com/symfony/Process in your project, for ex with composer (tested with 2.3 version)
+include
+https://github.com/symfony/Process,
+https://github.com/mtdowling/cron-expression
+ in your project, for ex with composer (tested with 2.3 version)
 
 ## Configuration
 
@@ -38,7 +41,7 @@ Write global config if you need to change plugin config:
 					'id' => '1',
 					'name' => 'Test1',
 					'description' => '',
-					'frequency' => '5',
+					'frequency' => '*/5 * * * *',
 					'timeout' => '600',
 					'last_code_string' => 'BAD',
 					'last_check' => '2013-07-09 14:03:22',
@@ -47,7 +50,7 @@ Write global config if you need to change plugin config:
 					'emails' => '',
 					'created' => '0000-00-00 00:00:00',
 					'modified' => '2013-07-09 14:03:22',
-					'next_run_date' => '2013-07-09 14:08:22'
+					'next_check' => '2013-07-09 14:08:22'
 				),
 				'MonitoringLog' => array(
 					(int) 0 => array(

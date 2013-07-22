@@ -15,6 +15,6 @@ App::uses('Sanitize', 'Utility');
 <strong>Result:</strong> <?= $checker['Monitoring']['last_code_string']; ?><br />
 <strong>Description:</strong> <?= $this->Text->autoLink($checker['Monitoring']['description'], array('target' => '_blank')); ?><br />
 <strong>Checked:</strong> <?= $checker['Monitoring']['last_check']; ?><br />
-<strong>Next check:</strong> <?= $checker['Monitoring']['next_run_date']; ?><br />
+<strong>Next check:</strong> <?= $checker['Monitoring']['next_check']; ?><br />
 <strong>Errors:</strong><pre><?= Sanitize::html($checker['MonitoringLog'][0]['stderr']); ?></pre><br />
 <strong>Output:</strong><pre><?= Sanitize::html($checker['MonitoringLog'][0]['stdout']); ?></pre><br />

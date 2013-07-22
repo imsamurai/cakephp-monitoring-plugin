@@ -46,31 +46,33 @@ class MonitoringTest extends CakeTestCase {
 			'id' => 2,
 			'name' => 'Test2',
 			'active' => 1,
-			'frequency' => 0,
+			'cron' => '*/5 * * * *',
 			'priority' => 0,
-			'last_check' => date('Y-m-d H:i:s')
+			'last_check' => date(Monitoring::$DBDateTimeFormat)
 		));
 
 		$this->Monitoring->save(array(
 			'id' => 3,
 			'name' => 'Test3',
 			'active' => 1,
-			'frequency' => 5,
-			'last_check' => date('Y-m-d H:i:s')
+			'cron' => '* * * * *',
+			'last_check' => date(Monitoring::$DBDateTimeFormat)
 		));
 
 		$this->Monitoring->save(array(
 			'id' => 4,
 			'name' => 'Test4',
 			'active' => 1,
-			'frequency' => 0,
+			'cron' => '* * * * *',
 			'priority' => 1,
 			'last_check' => '0000-00-00 00:00:00'
 		));
 
 		$checkers = $this->Monitoring->getActiveCheckers();
+		debug($checkers);
 		$this->assertEquals(4, $checkers[0]['id']);
-		$this->assertEquals(2, $checkers[1]['id']);
+		$this->assertEquals(3, $checkers[1]['id']);
+		$this->assertCount(2, $checkers);
 	}
 
 	public function testSaveCheckResults() {
