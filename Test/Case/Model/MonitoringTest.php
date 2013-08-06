@@ -45,7 +45,7 @@ class MonitoringTest extends CakeTestCase {
 		$this->Monitoring->save(array(
 			'id' => 2,
 			'name' => 'Test2',
-			'active' => 1,
+			'active' => 0,
 			'cron' => '*/5 * * * *',
 			'priority' => 0,
 			'last_check' => date(Monitoring::$DBDateTimeFormat)
@@ -67,7 +67,6 @@ class MonitoringTest extends CakeTestCase {
 			'priority' => 1,
 			'last_check' => '0000-00-00 00:00:00'
 		));
-		sleep(1);
 		$checkers = $this->Monitoring->getActiveCheckers();
 		debug($checkers);
 		$this->assertEquals(4, $checkers[0]['id']);
