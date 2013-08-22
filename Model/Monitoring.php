@@ -52,6 +52,12 @@ class Monitoring extends AppMonitoringModel {
 	 * @return bool True if ok
 	 */
 	public function saveCheckResults($checkerId, $code = 0, $codeString = 'OK', $stderr = '', $stdout = '') {
+		settype(integer, $checkerId);
+		settype(integer, $code);
+		settype(string, $codeString);
+		settype(string, $stderr);
+		settype(string, $stdout);
+		
 		$data = array(
 			$this->alias => array(
 				'id' => $checkerId,
