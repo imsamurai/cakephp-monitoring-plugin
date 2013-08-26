@@ -54,16 +54,16 @@ class Monitoring extends AppMonitoringModel {
 	public function saveCheckResults($checkerId, $code = 0, $codeString = 'OK', $stderr = '', $stdout = '') {
 		$data = array(
 			$this->alias => array(
-				'id' => $checkerId,
-				'last_code_string' => $codeString,
+				'id' => (int) $checkerId,
+				'last_code_string' => (string) $codeString,
 				'last_check' => date(static::$DBDateTimeFormat)
 			),
 			'MonitoringLog' => array(
 				array(
-					'code' => $code,
-					'code_string' => $codeString,
-					'stderr' => $stderr,
-					'stdout' => $stdout
+					'code' => (int) $code,
+					'code_string' => (string) $codeString,
+					'stderr' => (string) $stderr,
+					'stdout' => (string) $stdout
 				)
 			)
 		);
