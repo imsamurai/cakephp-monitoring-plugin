@@ -97,17 +97,15 @@ class CheckersTask extends AppMonitoringShell {
 			$subject = sprintf($emailConfig['subject'], $checker['Monitoring']['name'], $checker['Monitoring']['last_code_string']);
 		}
 
-		list($checkerPlugin, $checkerName) = pluginSplit($checker['Monitoring']['name']);
-		if ($checkerPlugin) {
-			$checkerPlugin = Inflector::camelize($checkerPlugin) . '.';
-		}
+		list(, $checkerName) = pluginSplit($checker['Monitoring']['name']);
+
 		$emails = explode(',', $checker['Monitoring']['emails']);
 		$emails = array_map('trim', $emails);
 		$Email = new CakeEmail();
 		$Email->config($emailConfig['config'])
 				->to($emails)
 				->subject($subject)
-				->template($checkerPlugin . 'Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
+				->template('Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
 				->viewVars(compact('checker'))
 				->emailFormat(CakeEmail::MESSAGE_HTML)
 				->helpers(array('Html', 'Text'))
@@ -120,7 +118,7 @@ class CheckersTask extends AppMonitoringShell {
 		try {
 			$Email->send();
 		} catch (MissingViewException $Exception) {
-			$Email->template($checkerPlugin.'Monitoring/default', 'monitoring')->send();
+			$Email->template('Monitoring/default', 'monitoring')->send();
 		}
 
 		$this->out("Sent mail for '{$checker['Monitoring']['name']}'");
