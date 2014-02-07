@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -13,11 +13,13 @@
 class AppMonitoringShell extends AppShell {
 
 	public $tasks = array();
+	
 	public $uses = array();
+	
 	public $pluginName = 'Monitoring';
 
 	public function runCommand($command, $argv) {
-		Configure::write('debug', (int) Hash::get($this->params, 'debug'));
+		Configure::write('debug', (int)Hash::get($this->params, 'debug'));
 		$this->OptionParser = $this->getOptionParser();
 		if (!empty($this->params['help'])) {
 			$this->_welcome();

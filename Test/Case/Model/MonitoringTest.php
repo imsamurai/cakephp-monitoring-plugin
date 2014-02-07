@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -38,7 +38,6 @@ class MonitoringTest extends CakeTestCase {
 		parent::setUp();
 		$this->Monitoring = ClassRegistry::init('Monitoring.Monitoring');
 		$this->Monitoring->recursive = -1;
-
 	}
 
 	public function testGetActiveCheckers() {
@@ -86,6 +85,5 @@ class MonitoringTest extends CakeTestCase {
 		$this->assertEqual($checker['MonitoringLog'][1]['code_string'], 'BAD');
 		$this->assertEqual($checker['MonitoringLog'][1]['stderr'], 'Some errors');
 	}
-
 
 }

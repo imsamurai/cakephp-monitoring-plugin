@@ -1,5 +1,6 @@
 Cakephp Monitoring Plugin
 =========================
+[![Build Status](https://travis-ci.org/imsamurai/cakephp-monitoring-plugin.png)](https://travis-ci.org/imsamurai/cakephp-monitoring-plugin) [![Coverage Status](https://coveralls.io/repos/imsamurai/cakephp-monitoring-plugin/badge.png?branch=master)](https://coveralls.io/r/imsamurai/cakephp-monitoring-plugin?branch=master) [![Latest Stable Version](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/stable.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![Total Downloads](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/downloads.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![Latest Unstable Version](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/unstable.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![License](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/license.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin)
 
 Coordinator for any checker scripts.
 With this plugin you can unify periodic checkers for some of your services/data/etc,

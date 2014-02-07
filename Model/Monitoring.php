@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -12,6 +12,7 @@ App::uses('AppMonitoringModel', 'Monitoring.Model');
  * @package Monitoring.Model
  */
 class Monitoring extends AppMonitoringModel {
+
 	/**
 	 * Default cron value
 	 *
@@ -54,16 +55,16 @@ class Monitoring extends AppMonitoringModel {
 	public function saveCheckResults($checkerId, $code = 0, $codeString = 'OK', $stderr = '', $stdout = '') {
 		$data = array(
 			$this->alias => array(
-				'id' => (int) $checkerId,
-				'last_code_string' => (string) $codeString,
+				'id' => (int)$checkerId,
+				'last_code_string' => (string)$codeString,
 				'last_check' => date(static::$DBDateTimeFormat)
 			),
 			'MonitoringLog' => array(
 				array(
-					'code' => (int) $code,
-					'code_string' => (string) $codeString,
-					'stderr' => (string) $stderr,
-					'stdout' => (string) $stdout
+					'code' => (int)$code,
+					'code_string' => (string)$codeString,
+					'stderr' => (string)$stderr,
+					'stdout' => (string)$stdout
 				)
 			)
 		);
@@ -87,7 +88,7 @@ class Monitoring extends AppMonitoringModel {
 			)
 		));
 
-		return (array) Hash::extract($checkers, '{n}.' . $this->alias);
+		return (array)Hash::extract($checkers, '{n}.' . $this->alias);
 	}
 
 	/**
@@ -99,8 +100,7 @@ class Monitoring extends AppMonitoringModel {
 	public function beforeSave($options = array()) {
 		if (!empty($this->data[$this->alias]['cron'])) {
 			$cron = $this->data[$this->alias]['cron'];
-		}
-		else if (!empty($this->data[$this->alias]['id'])) {
+		} elseif (!empty($this->data[$this->alias]['id'])) {
 			$cron = $this->field('cron', array('id' => $this->data[$this->alias]['id']));
 		}
 		if (!$cron) {

@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -22,10 +22,10 @@ class MonitoringShell extends AppMonitoringShell {
 		$parser = parent::getOptionParser();
 		$parser->description('Monitoring shell options');
 
-		foreach ($this->enabledTasks as $task_name) {
-			$parser->addSubcommand(Inflector::underscore($task_name), array(
-				'help' => $this->Tasks->load($this->pluginName . '.' . $task_name)->getOptionParser()->description(),
-				'parser' => $this->Tasks->load($this->pluginName . '.' . $task_name)->getOptionParser()
+		foreach ($this->enabledTasks as $taskName) {
+			$parser->addSubcommand(Inflector::underscore($taskName), array(
+				'help' => $this->Tasks->load($this->pluginName . '.' . $taskName)->getOptionParser()->description(),
+				'parser' => $this->Tasks->load($this->pluginName . '.' . $taskName)->getOptionParser()
 			));
 		}
 		return $parser;

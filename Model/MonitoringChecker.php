@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -6,7 +6,6 @@
  * Time: 16:30:39
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
-
 App::uses('AppMonitoringModel', 'Monitoring.Model');
 
 /**

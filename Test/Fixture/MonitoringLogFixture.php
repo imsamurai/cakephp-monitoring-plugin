@@ -15,8 +15,8 @@ class MonitoringLogFixture extends CakeTestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20, 'key' => 'primary'),
-		'monitoring_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20),
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 20, 'key' => 'primary'),
+		'monitoring_id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 20),
 		'code' => array('type' => 'integer', 'null' => false, 'default' => 0, 'length' => 10),
 		'code_string' => array('type' => 'string', 'null' => false, 'default' => 'OK', 'length' => 100),
 		'stderr' => array('type' => 'string', 'null' => false, 'default' => ''),

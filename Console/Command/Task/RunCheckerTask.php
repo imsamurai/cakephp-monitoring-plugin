@@ -1,4 +1,4 @@
-<?
+<?php
 
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -29,12 +29,13 @@ class RunCheckerTask extends AppMonitoringShell {
 
 	/**
 	 * Runs checker
+	 * @throws Exception
 	 */
 	public function execute() {
 		try {
 			list($plugin, $name) = pluginSplit($this->args[0]);
 			$plugin = Inflector::camelize($plugin);
-			$name = 'Monitoring'.Inflector::camelize($name).'Check';
+			$name = 'Monitoring' . Inflector::camelize($name) . 'Check';
 			if ($plugin) {
 				$className = "$plugin.$name";
 			} else {
@@ -58,8 +59,7 @@ class RunCheckerTask extends AppMonitoringShell {
 				->addArgument('name', array(
 					'required' => true,
 					'help' => 'Checker model class name'
-				))
-		;
+				));
 		return $parser;
 	}
 

@@ -1,0 +1,33 @@
+{
+  "name": "imsamurai/cakephp-monitoring-plugin",
+  "description": "Use it if you want to wrap model methods with cache",
+  "type": "cakephp-plugin",
+  "keywords": [
+    "cakephp",
+    "monitoring",
+    "plugin"
+  ],
+  "homepage": "http://github.com/imsamurai/cakephp-monitoring-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Shamray Alexander",
+      "email": "im.samuray@gmail.com",
+      "homepage": "https://imsamurai.me",
+      "role": "Maintainer"
+    }
+  ],
+  "require": {
+    "composer/installers": "*",
+	"symfony/process": "2.3.5",
+	"mtdowling/cron-expression": "1.0.2"
+  },
+  "support": {
+    "email": "im.samuray@gmail.com",
+    "issues": "https://github.com/imsamurai/cakephp-monitoring-plugin/issues",
+    "source": "https://github.com/imsamurai/cakephp-monitoring-plugin"
+  },
+  "extra": {
+    "installer-name": "Monitoring"
+  }
+}

@@ -15,7 +15,7 @@ class MonitoringFixture extends CakeTestFixture {
 	 * @var array
 	 */
 	public $fields = array(
-		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 20, 'key' => 'primary'),
+		'id' => array('type' => 'integer', 'null' => false, 'default' => null, 'length' => 20, 'key' => 'primary'),
 		'name' => array('type' => 'string', 'null' => false, 'default' => '', 'length' => 50),
 		'description' => array('type' => 'string', 'null' => false, 'default' => ''),
 		'cron' => array('type' => 'string', 'null' => false, 'length' => 100, 'default' => '*/5 * * * *'),

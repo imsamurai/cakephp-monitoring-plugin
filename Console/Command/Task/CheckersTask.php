@@ -1,4 +1,4 @@
-<?
+<?php
 
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\ProcessUtils;
@@ -43,18 +43,18 @@ class CheckersTask extends AppMonitoringShell {
 			$this->out("Start check '{$checker['name']}'");
 			$arguments = $this->_argsToString(array(
 				$checker['name'],
-				'-d' => (int) Configure::read('debug'),
+				'-d' => (int)Configure::read('debug'),
 				'-s'
 			));
 			$Process = new Process('Console/cake Monitoring.monitoring run_checker ' . $arguments, APP);
 			$Process->setTimeout($checker['timeout']);
 			$Process->run(function ($type, $buffer) {
-						if ('err' === $type) {
-							$this->err($buffer);
-						} else {
-							$this->out($buffer);
-						}
-					});
+				if ('err' === $type) {
+					$this->err($buffer);
+				} else {
+					$this->out($buffer);
+				}
+			});
 			$this->Monitoring->saveCheckResults($checker['id'], $Process->getExitCode(), $Process->getExitCodeText(), $Process->getErrorOutput(), $Process->getOutput());
 			$this->out("Finish check '{$checker['name']}' with code '{$Process->getExitCodeText()}'");
 			if ($Process->getExitCode() != 0 && !empty($checker['emails'])) {
@@ -69,7 +69,7 @@ class CheckersTask extends AppMonitoringShell {
 	 * @param int $checkerId
 	 */
 	protected function _sendReport($checkerId) {
-		$emailConfig = (array) Configure::read('Monitoring.Email') + array(
+		$emailConfig = (array)Configure::read('Monitoring.Email') + array(
 			'send' => true,
 			'config' => 'default',
 			'subject' => 'Monitoring alert caused by %s returned code: %s!'
@@ -108,13 +108,12 @@ class CheckersTask extends AppMonitoringShell {
 				->template('Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
 				->viewVars(compact('checker'))
 				->emailFormat(CakeEmail::MESSAGE_HTML)
-				->helpers(array('Html', 'Text'))
-		;
+				->helpers(array('Html', 'Text'));
 		App::build(array(
 			'View' => array(
 				App::pluginPath('Monitoring') . 'View' . DS
 			)
-		), App::APPEND);
+				), App::APPEND);
 		try {
 			$Email->send();
 		} catch (MissingViewException $Exception) {
@@ -131,8 +130,7 @@ class CheckersTask extends AppMonitoringShell {
 	 */
 	public function getOptionParser() {
 		$parser = parent::getOptionParser();
-		$parser->description('Runs active checkers')
-		;
+		$parser->description('Runs active checkers');
 		return $parser;
 	}
 
@@ -146,9 +144,9 @@ class CheckersTask extends AppMonitoringShell {
 		$stringArguments = '';
 		foreach ($arguments as $name => $value) {
 			if (is_numeric($name)) {
-				$stringArguments.=' ' . $value;
+				$stringArguments .= ' ' . $value;
 			} else {
-				$stringArguments.=' ' . $name . ' ' . ProcessUtils::escapeArgument($value);
+				$stringArguments .= ' ' . $name . ' ' . ProcessUtils::escapeArgument($value);
 			}
 		}
 
