@@ -108,7 +108,7 @@ class Monitoring extends AppMonitoringModel {
 		}
 
 		$this->data[$this->alias]['cron'] = $cron;
-		$this->data[$this->alias]['next_check'] = Cron\CronExpression::factory($cron)->getNextRunDate('now', 0, true)->format(static::$DBDateTimeFormat);
+		$this->data[$this->alias]['next_check'] = Cron\CronExpression::factory($cron)->getNextRunDate('now')->format(static::$DBDateTimeFormat);
 		return parent::beforeSave($options);
 	}
 
