@@ -73,20 +73,26 @@ class Monitoring extends AppMonitoringModel {
 	}
 
 	/**
-	 * Returns active checkers that can be runned at this time
+	 * Returns active checkers
 	 *
+	 * @param bool $next_check
 	 * @return array
 	 */
-	public function getActiveCheckers() {
-		$checkers = $this->find('all', array(
+	public function getActiveCheckers($next_check = true) {
+		$conditions = array(
 			'conditions' => array(
 				'active' => 1,
-				'next_check <=' => date(static::$DBDateTimeFormat)
 			),
 			'order' => array(
 				'priority' => 'DESC'
 			)
-		));
+		);
+
+		if($next_check){
+			$conditions['conditions']['next_check <='] = date(static::$DBDateTimeFormat);
+		}
+
+		$checkers = $this->find('all', $conditions);
 
 		return (array)Hash::extract($checkers, '{n}.' . $this->alias);
 	}
