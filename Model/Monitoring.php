@@ -88,7 +88,7 @@ class Monitoring extends AppMonitoringModel {
 			)
 		);
 
-		if ($nextCheck){
+		if ($nextCheck) {
 			$conditions['conditions']['next_check <='] = date(static::$DBDateTimeFormat);
 		}
 
