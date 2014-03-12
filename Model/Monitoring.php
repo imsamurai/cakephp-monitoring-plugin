@@ -78,7 +78,7 @@ class Monitoring extends AppMonitoringModel {
 	 * @param bool $next_check
 	 * @return array
 	 */
-	public function getActiveCheckers($next_check = true) {
+	public function getActiveCheckers($nextCheck = true) {
 		$conditions = array(
 			'conditions' => array(
 				'active' => 1,
@@ -88,7 +88,7 @@ class Monitoring extends AppMonitoringModel {
 			)
 		);
 
-		if($next_check){
+		if ($nextCheck){
 			$conditions['conditions']['next_check <='] = date(static::$DBDateTimeFormat);
 		}
 
