@@ -19,8 +19,8 @@
   ],
   "require": {
     "composer/installers": "*",
-	"symfony/process": ">=2.3.5",
-	"mtdowling/cron-expression": ">=1.0.2"
+	"symfony/process": "2.4.*",
+	"mtdowling/cron-expression": "1.0.2"
   },
   "support": {
     "email": "im.samuray@gmail.com",
