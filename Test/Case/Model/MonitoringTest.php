@@ -66,7 +66,7 @@ class MonitoringTest extends CakeTestCase {
 			'priority' => 1,
 			'last_check' => '0000-00-00 00:00:00'
 		));
-		$checkers = $this->Monitoring->getActiveCheckers();
+		$checkers = $this->Monitoring->getActiveCheckers(false);
 		debug($checkers);
 		$this->assertEquals(4, $checkers[0]['id']);
 		$this->assertEquals(3, $checkers[1]['id']);
