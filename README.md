@@ -18,7 +18,7 @@ or if you use git add as submodule:
 
 then add plugin loading in Config/bootstrap.php
 
-	CakePlugin::load('Monitoring');
+	CakePlugin::load('Monitoring', array('bootstrap' => true));
 
 add tables from `Config/Schema/monitoring.sql`
 
