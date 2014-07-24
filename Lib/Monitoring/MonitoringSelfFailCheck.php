@@ -6,25 +6,25 @@
  * Time: 16:33:32
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
-App::uses('MonitoringChecker', 'Monitoring.Model');
+App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
  * @package Monitoring.Model
  */
-class MonitoringSelfCheck extends MonitoringChecker {
+class MonitoringSelfFailCheck extends MonitoringChecker {
 
 	/**
 	 * {@inheritdoc}
-	 *
-	 * @var string
-	 */
-	public $name = 'MonitoringSelfCheck';
-
-	/**
-	 * Check monitoring plugin
 	 */
 	public function check() {
-		return true;
+		return false;
+	}
+
+	/**
+	 * {@inheritdoc}
+	 */
+	public function error() {
+		return 'Test error';
 	}
 
 }

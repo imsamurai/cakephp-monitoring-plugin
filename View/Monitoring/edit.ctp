@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 09.07.2013
@@ -8,8 +8,8 @@
  */
 /* @var $this View */
 ?>
-<h1>Edit <?= $this->Html->link('monitoring', array('action' => 'index')); ?></h1>
+<h1>Edit <?= $this->Html->link('monitoring', array('action' => 'index')) . ' (' . $this->request->data('Monitoring.class') . ')'; ?></h1>
 <hr>
 <br>
 
-<?= $this->element('forms/monitoring_create'); ?>
+<?= $this->element('forms/monitoring_create');

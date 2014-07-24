@@ -1,21 +1,25 @@
 <?php
 
-use Symfony\Component\Process\Process;
-use Symfony\Component\Process\ProcessUtils;
-
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 08.07.2013
  * Time: 16:30:00
  * Format: http://book.cakephp.org/2.0/en/console-and-shells.html#shell-tasks
  */
-App::uses('AppMonitoringShell', 'Monitoring.Console/Command');
+App::uses('AdvancedTask', 'AdvancedShell.Console/Command/Task');
 App::uses('CakeEmail', 'Network/Email');
 
 /**
  * @package Monitoring.Console.Command.Task
  */
-class CheckersTask extends AppMonitoringShell {
+class MonitoringRunTask extends AdvancedTask {
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var string
+	 */
+	public $name = 'Run';
 
 	/**
 	 * {@inheritdoc}
@@ -37,27 +41,32 @@ class CheckersTask extends AppMonitoringShell {
 	 * @return void
 	 */
 	public function execute() {
+		parent::execute();
 		$checkers = $this->Monitoring->getActiveCheckers();
 
 		foreach ($checkers as $checker) {
-			$this->out("Start check '{$checker['name']}'");
-			$arguments = $this->_argsToString(array(
-				$checker['name'],
-				'-d' => (int)Configure::read('debug'),
-				'-s'
-			));
-			$Process = new Process('Console/cake Monitoring.monitoring run_checker ' . $arguments, APP);
-			$Process->setTimeout($checker['timeout']);
-			$Process->run(function ($type, $buffer) {
-				if ('err' === $type) {
-					$this->err($buffer);
-				} else {
-					$this->out($buffer);
-				}
-			});
-			$this->Monitoring->saveCheckResults($checker['id'], $Process->getExitCode(), $Process->getExitCodeText(), $Process->getErrorOutput(), $Process->getOutput());
-			$this->out("Finish check '{$checker['name']}' with code '{$Process->getExitCodeText()}'");
-			if ($Process->getExitCode() != 0 && !empty($checker['emails'])) {
+			$this->out("Check '{$checker['name']}'");
+
+			try {
+				list($plugin, $class) = pluginSplit($checker['class']);
+				App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
+				$Checker = new $class;
+				$success = $Checker->check();
+				$error = $Checker->error();
+			} catch (Exception $Exception) {
+				$success = false;
+				$error = $Exception->getMessage();
+			}
+
+			$this->Monitoring->saveCheckResults($checker['id'], $success ? 'OK' : 'Error', $error);
+			
+			if (!$success) {
+				$this->err("<error>Error</error> '{$checker['name']}'");
+			} else {
+				$this->out("<ok>OK</ok> '{$checker['name']}'");
+			}
+			
+			if (!$success && !empty($checker['emails'])) {
 				$this->_sendReport($checker['id']);
 			}
 		}
@@ -109,11 +118,13 @@ class CheckersTask extends AppMonitoringShell {
 				->viewVars(compact('checker'))
 				->emailFormat(CakeEmail::MESSAGE_HTML)
 				->helpers(array('Html', 'Text'));
+		
 		App::build(array(
 			'View' => array(
 				App::pluginPath('Monitoring') . 'View' . DS
 			)
 				), App::APPEND);
+		
 		try {
 			$Email->send();
 		} catch (MissingViewException $Exception) {
@@ -132,25 +143,6 @@ class CheckersTask extends AppMonitoringShell {
 		$parser = parent::getOptionParser();
 		$parser->description('Runs active checkers');
 		return $parser;
-	}
-
-	/**
-	 * Convert array of arguments into string
-	 *
-	 * @param array $arguments
-	 * @return string
-	 */
-	protected function _argsToString(array $arguments) {
-		$stringArguments = '';
-		foreach ($arguments as $name => $value) {
-			if (is_numeric($name)) {
-				$stringArguments .= ' ' . $value;
-			} else {
-				$stringArguments .= ' ' . $name . ' ' . ProcessUtils::escapeArgument($value);
-			}
-		}
-
-		return $stringArguments;
 	}
 
 }

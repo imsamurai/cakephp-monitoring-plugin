@@ -44,19 +44,19 @@ class MonitoringController extends AppController {
 	}
 
 	/**
-	 * Create
+	 * Save
 	 */
-	public function create() {
+	public function save() {
 		if ($this->request->is('post')) {
 			if ($this->Monitoring->save($this->request->data)) {
-				$this->Session->setFlash('Monitoring saved.', 'alerts/alert_simple', array('class' => 'alert-success', 'title' => 'Ok!'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('Monitoring saved.', 'alert/simple', array('class' => 'alert-success', 'title' => 'Ok!'));
 			} else {
-				$this->Session->setFlash('Unable to saved monitoring.', 'alerts/alert_simple', array('class' => 'alert-error', 'title' => 'Error!'));
+				$this->Session->setFlash('Unable to saved monitoring.', 'alert/simple', array('class' => 'alert-error', 'title' => 'Error!'));
 			}
 		}
+		$this->redirect($this->referer());
 	}
-
+	
 	/**
 	 * Edit
 	 * 

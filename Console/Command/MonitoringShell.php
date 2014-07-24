@@ -6,35 +6,25 @@
  * Time: 16:30:00
  * Format: http://book.cakephp.org/2.0/en/console-and-shells.html#creating-a-shell
  */
-App::uses('AppMonitoringShell', 'Monitoring.Console/Command');
+App::uses('AdvancedShell', 'AdvancedShell.Console/Command');
 
 /**
  * @package Monitoring.Console.Command
  */
-class MonitoringShell extends AppMonitoringShell {
+class MonitoringShell extends AdvancedShell {
 
-	public $enabledTasks = array(
-		'Checkers',
-		'RunChecker'
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var array
+	 */
+	public $tasks = array(
+		'Run' => array(
+			'className' => 'Monitoring.MonitoringRun'
+		),
+		'Update' => array(
+			'className' => 'Monitoring.MonitoringUpdate'
+		)
 	);
-
-	public function getOptionParser() {
-		$parser = parent::getOptionParser();
-		$parser->description('Monitoring shell options');
-
-		foreach ($this->enabledTasks as $taskName) {
-			$parser->addSubcommand(Inflector::underscore($taskName), array(
-				'help' => $this->Tasks->load($this->pluginName . '.' . $taskName)->getOptionParser()->description(),
-				'parser' => $this->Tasks->load($this->pluginName . '.' . $taskName)->getOptionParser()
-			));
-		}
-		return $parser;
-	}
-
-	public function startup() {
-		if (!$this->params['silent']) {
-			parent::startup();
-		}
-	}
 
 }

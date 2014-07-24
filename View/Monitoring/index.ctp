@@ -1,4 +1,4 @@
-<?
+<?php
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 09.07.2013
@@ -14,7 +14,7 @@ if (empty($data)) {
 	echo $this->element('basics/no_data');
 	return;
 }
-echo $this->element('pagination');
+echo $this->element('pagination/pagination');
 ?>
 <table class="table table-bordered table-striped">
 	<thead>
@@ -37,7 +37,9 @@ echo $this->element('pagination');
 			?>
 			<tr>
 				<td><?= $one['Monitoring']['id']; ?></td>
-				<td><?= $one['Monitoring']['name']; ?></td>
+				<td title="<?= 'class: ' . $one['Monitoring']['class']; ?>">
+					<?= $one['Monitoring']['name']; ?>
+				</td>
 				<td><?= $this->Html->tag('span', $one['Monitoring']['last_code_string'], array('class' => 'label label-' . ($one['Monitoring']['last_code_string'] == 'OK' ? 'success' : 'important'))); ?></td>
 				<td><?= $one['Monitoring']['last_check'] != '0000-00-00 00:00:00' ? $this->Time->format(Configure::read('Monitoring.dateFormat'), $one['Monitoring']['last_check']) : 'none'; ?></td>
 				<td><?= $this->Time->format(Configure::read('Monitoring.dateFormat'), $one['Monitoring']['next_check']); ?></td>
@@ -46,8 +48,8 @@ echo $this->element('pagination');
 				<td><?= $this->Time->format(Configure::read('Monitoring.dateFormat'), $one['Monitoring']['created']); ?></td>
 				<td><?= $this->Time->format(Configure::read('Monitoring.dateFormat'), $one['Monitoring']['modified']); ?></td>
 				<td>
-					<?= $this->Html->link('Edit', array('controller' => 'monitorings', 'action' => 'edit', $one['Monitoring']['id']), array('class' => 'btn btn-mini')); ?>
-					<?= $this->Html->link('Logs', array('controller' => 'monitorings', 'action' => 'logs', $one['Monitoring']['id']), array('class' => 'btn btn-mini')); ?>
+					<?= $this->Html->link('Edit', array('controller' => 'monitoring', 'action' => 'edit', $one['Monitoring']['id']), array('class' => 'btn btn-mini')); ?>
+					<?= $this->Html->link('Logs', array('controller' => 'monitoring', 'action' => 'logs', $one['Monitoring']['id']), array('class' => 'btn btn-mini')); ?>
 				</td>
 			</tr>
 			<?php
@@ -55,4 +57,5 @@ echo $this->element('pagination');
 		?>
 	</tbody>
 </table>
-<?= $this->element('pagination'); ?>
+<?=
+$this->element('pagination/pagination');

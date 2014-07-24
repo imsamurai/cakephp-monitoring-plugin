@@ -52,7 +52,7 @@ class Monitoring extends AppMonitoringModel {
 	 *
 	 * @return bool True if ok
 	 */
-	public function saveCheckResults($checkerId, $code = 0, $codeString = 'OK', $stderr = '', $stdout = '') {
+	public function saveCheckResults($checkerId, $codeString = 'OK', $error = '') {
 		$data = array(
 			$this->alias => array(
 				'id' => (int)$checkerId,
@@ -61,10 +61,8 @@ class Monitoring extends AppMonitoringModel {
 			),
 			'MonitoringLog' => array(
 				array(
-					'code' => (int)$code,
 					'code_string' => (string)$codeString,
-					'stderr' => (string)$stderr,
-					'stdout' => (string)$stdout
+					'error' => (string)$error,
 				)
 			)
 		);
@@ -116,6 +114,56 @@ class Monitoring extends AppMonitoringModel {
 		$this->data[$this->alias]['cron'] = $cron;
 		$this->data[$this->alias]['next_check'] = Cron\CronExpression::factory($cron)->getNextRunDate('now')->format(static::$DBDateTimeFormat);
 		return parent::beforeSave($options);
+	}
+
+	/**
+	 * Search for all checker classes
+	 * 
+	 * @return array
+	 */
+	public function findAllCheckerClasses() {
+		$checkers = array();
+		$path = Configure::read('Monitoring.checkersPath');
+		foreach (CakePlugin::loaded() as $plugin) {
+			$fullPath = CakePlugin::path($plugin) . $path . '/*Check.php';
+			foreach (new GlobIterator($fullPath) as $FileInfo) {
+				$checkers[] = $plugin . '.' . $FileInfo->getBasename('.' . $FileInfo->getExtension());
+			}
+		}
+
+		return $checkers;
+	}
+
+	/**
+	 * Search for all new checker classes
+	 * 
+	 * @return array
+	 */
+	public function findNewCheckers() {
+		$checkers = $this->findAllCheckerClasses();
+		$checkersExisted = $this->find('list', array(
+			'values' => array('class', 'class'),
+			'conditions' => array(
+				'class' => $checkers
+			)
+		));
+		return array_diff($checkers, $checkersExisted);
+	}
+
+	/**
+	 * Add new checker
+	 * 
+	 * @param name $checker
+	 * @param array $options
+	 * @return mixed
+	 */
+	public function add($checker, array $options = array()) {
+		$data = array(
+			'class' => $checker
+				) + $options + array(
+			'name' => $checker
+				) + Configure::read('Monitoring.defaults');
+		return $this->save($data);
 	}
 
 }

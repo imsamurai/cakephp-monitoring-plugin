@@ -1,6 +1,7 @@
 CREATE TABLE `monitorings` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL DEFAULT '',
+  `class` varchar(500) NOT NULL DEFAULT '',
   `description` varchar(255) NOT NULL DEFAULT '',
   `cron` varchar(100) NOT NULL DEFAULT '*/5 * * * *',
   `timeout` int(10) NOT NULL DEFAULT '600',
@@ -21,8 +22,7 @@ CREATE TABLE `monitoring_logs` (
   `monitoring_id` bigint(20) unsigned NOT NULL,
   `code` int(10) NOT NULL DEFAULT '0',
   `code_string` varchar(100) NOT NULL DEFAULT 'OK',
-  `stderr` longtext NOT NULL,
-  `stdout` longtext NOT NULL,
+  `error` longtext NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
