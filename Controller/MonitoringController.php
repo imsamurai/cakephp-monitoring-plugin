@@ -64,10 +64,18 @@ class MonitoringController extends AppController {
 	 * @throws NotFoundException
 	 */
 	public function edit($monitoringId) {
-		$this->data = $this->Monitoring->read(null, $monitoringId);
-		if (!$this->data) {
+		$checker = $this->Monitoring->read(null, $monitoringId);
+		if (!$checker) {
 			throw new NotFoundException('Monitoring not found!');
 		}
+		
+		list(,$class) = pluginSplit($checker[$this->Monitoring->alias]['class']);
+		$checker[$this->Monitoring->alias]['settings'] = 
+				(array)$checker[$this->Monitoring->alias]['settings'] 
+				+ (array)Configure::read("Monitoring.checkers.$class.defaults");
+		
+		$this->request->data = $checker;
+		$this->set('settingsView', Inflector::underscore($class));
 	}
 
 	/**

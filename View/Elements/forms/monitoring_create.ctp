@@ -7,9 +7,11 @@
  * 
  * @package Monitoring.View
  */
+
+$modelName = 'Monitoring';
 ?>
 <?=
-$this->Form->create('Monitoring', array(
+$this->Form->create($modelName, array(
 	'type' => 'post',
 	'url' => array(
 		'action' => 'save',
@@ -19,18 +21,23 @@ $this->Form->create('Monitoring', array(
 ?>
 <fieldset>
 	<div style="display: none;">
-	<?= $this->Form->input('id', array('type' => 'hidden')); ?>
+		<?= $this->Form->input('id', array('type' => 'hidden')); ?>
 	</div>
 	<?= $this->Form->input('name'); ?>
 	<?= $this->Form->input('description', array('type' => 'textarea', 'style' => 'width:600px;height:300px;')); ?>
 	<?= $this->Form->input('cron', array('help' => 'scheduler (cron syntax)')); ?>
 	<?= $this->Form->input('timeout', array('type' => 'number', 'help' => 'maximum waiting time for check in seconds')); ?>
 	<?= $this->Form->input('active', array('type' => 'checkbox')); ?>
-<?= $this->Form->input('priority', array('type' => 'number', 'help' => 'zero means highest')); ?>
-		<?= $this->Form->input('emails', array('type' => 'textarea', 'help' => 'coma-separated email list that will be used for send messages in case of failure', 'style' => 'width:600px;height:100px;')); ?>
-
+	<?= $this->Form->input('priority', array('type' => 'number', 'help' => 'zero means highest')); ?>
+	<?= $this->Form->input('emails', array('type' => 'textarea', 'help' => 'coma-separated email list that will be used for send messages in case of failure', 'style' => 'width:600px;height:100px;')); ?>
+	<?php
+	$settingsFields = $this->element("Monitoring/$settingsView", compact('modelName'), array('ignoreMissing' => true));
+	if ($settingsFields) {
+		echo $this->Html->tag('h3', 'Settings') . $settingsFields;
+	}
+	?>
 	<div class="form-actions" style="text-align:center;">
-<?= $this->Form->submit('Save', array('class' => 'btn btn-primary', 'div' => false)); ?>
+		<?= $this->Form->submit('Save', array('class' => 'btn btn-primary', 'div' => false)); ?>
 	</div>
 </fieldset>
 <?= $this->Form->end(); ?>

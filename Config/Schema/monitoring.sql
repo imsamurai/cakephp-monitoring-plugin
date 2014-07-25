@@ -11,6 +11,7 @@ CREATE TABLE `monitorings` (
   `active` int(1) NOT NULL DEFAULT '0',
   `priority` int(10) NOT NULL DEFAULT '0',
   `emails` text NOT NULL,
+  `settings` longtext,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   PRIMARY KEY (`id`),

@@ -20,11 +20,4 @@ class MonitoringSelfCheck extends MonitoringChecker {
 		return true;
 	}
 
-	/**
-	 * {@inheritdoc}
-	 */
-	public function error() {
-		return '';
-	}
-
 }

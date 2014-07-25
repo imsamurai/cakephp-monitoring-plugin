@@ -12,4 +12,5 @@
 <hr>
 <br>
 
-<?= $this->element('forms/monitoring_create');
+<?php
+echo $this->element('forms/monitoring_create');

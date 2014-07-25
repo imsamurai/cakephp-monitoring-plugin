@@ -11,6 +11,9 @@ App::uses('CakeEmail', 'Network/Email');
 
 /**
  * @package Monitoring.Console.Command.Task
+ * 
+ * @property Monitoring $Monitoring Monitoring model
+ * @property MonitoringReport $MonitoringReport MonitoringReport model
  */
 class MonitoringRunTask extends AdvancedTask {
 
@@ -26,14 +29,7 @@ class MonitoringRunTask extends AdvancedTask {
 	 *
 	 * @var array
 	 */
-	public $uses = array('Monitoring.Monitoring');
-
-	/**
-	 * Monitoring model
-	 *
-	 * @var Monitoring
-	 */
-	public $Monitoring = null;
+	public $uses = array('Monitoring.Monitoring', 'Monitoring.MonitoringReport');
 
 	/**
 	 * Execute all active checkers
@@ -50,9 +46,9 @@ class MonitoringRunTask extends AdvancedTask {
 			try {
 				list($plugin, $class) = pluginSplit($checker['class']);
 				App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
-				$Checker = new $class;
+				$Checker = new $class($checker['settings']);
 				$success = $Checker->check();
-				$error = $Checker->error();
+				$error = $Checker->getError();
 			} catch (Exception $Exception) {
 				$success = false;
 				$error = $Exception->getMessage();
@@ -75,18 +71,9 @@ class MonitoringRunTask extends AdvancedTask {
 	/**
 	 * Send email report
 	 *
-	 * @param int $checkerId
+	 * @param id $checkerId
 	 */
 	protected function _sendReport($checkerId) {
-		$emailConfig = (array)Configure::read('Monitoring.Email') + array(
-			'send' => true,
-			'config' => 'default',
-			'subject' => 'Monitoring alert caused by %s returned code: %s!'
-		);
-		if (!$emailConfig['send']) {
-			return;
-		}
-
 		$this->Monitoring->contain(array(
 			'MonitoringLog' => array(
 				'limit' => 1,
@@ -99,39 +86,13 @@ class MonitoringRunTask extends AdvancedTask {
 				'id' => $checkerId
 			)
 		));
-
-		if (is_callable($emailConfig['subject'])) {
-			$subject = $emailConfig['subject']($checker);
+		
+		$success = $this->MonitoringReport->send($checker['Monitoring'], $checker['MonitoringLog']);
+		if ($success) {
+			$this->out("<ok>Sent mail</ok> for '{$checker['Monitoring']['name']}'");
 		} else {
-			$subject = sprintf($emailConfig['subject'], $checker['Monitoring']['name'], $checker['Monitoring']['last_code_string']);
+			$this->err("<error>Fail to sent mail</error> for '{$checker['Monitoring']['name']}'");
 		}
-
-		list(, $checkerName) = pluginSplit($checker['Monitoring']['name']);
-
-		$emails = explode(',', $checker['Monitoring']['emails']);
-		$emails = array_map('trim', $emails);
-		$Email = new CakeEmail();
-		$Email->config($emailConfig['config'])
-				->to($emails)
-				->subject($subject)
-				->template('Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
-				->viewVars(compact('checker'))
-				->emailFormat(CakeEmail::MESSAGE_HTML)
-				->helpers(array('Html', 'Text'));
-		
-		App::build(array(
-			'View' => array(
-				App::pluginPath('Monitoring') . 'View' . DS
-			)
-				), App::APPEND);
-		
-		try {
-			$Email->send();
-		} catch (MissingViewException $Exception) {
-			$Email->template('Monitoring/default', 'monitoring')->send();
-		}
-
-		$this->out("Sent mail for '{$checker['Monitoring']['name']}'");
 	}
 
 	/**

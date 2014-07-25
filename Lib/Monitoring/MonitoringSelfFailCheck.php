@@ -17,14 +17,9 @@ class MonitoringSelfFailCheck extends MonitoringChecker {
 	 * {@inheritdoc}
 	 */
 	public function check() {
+		$this->addError('Test error');
+		$this->addError($this->_settings['errorText']);
 		return false;
 	}
-
-	/**
-	 * {@inheritdoc}
-	 */
-	public function error() {
-		return 'Test error';
-	}
-
+	
 }

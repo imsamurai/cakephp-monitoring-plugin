@@ -40,6 +40,17 @@ class Monitoring extends AppMonitoringModel {
 	 * @var array
 	 */
 	public $hasMany = array('Monitoring.MonitoringLog');
+	
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var array
+	 */
+	public $actsAs = array(
+		'Serializable.Serializable' => array(
+			'fields' => array('settings')
+		)
+	);
 
 	/**
 	 * Saves checker results
@@ -73,7 +84,7 @@ class Monitoring extends AppMonitoringModel {
 	/**
 	 * Returns active checkers
 	 *
-	 * @param bool $next_check
+	 * @param bool $nextCheck
 	 * @return array
 	 */
 	public function getActiveCheckers($nextCheck = true) {
@@ -158,6 +169,7 @@ class Monitoring extends AppMonitoringModel {
 	 * @return mixed
 	 */
 	public function add($checker, array $options = array()) {
+		$this->create();
 		$data = array(
 			'class' => $checker
 				) + $options + array(
