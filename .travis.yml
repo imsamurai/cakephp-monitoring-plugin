@@ -44,7 +44,7 @@ before_script:
           require_once dirname(dirname(dirname(__FILE__))) . '/lib/Cake/Console/ShellDispatcher.php';
           return ShellDispatcher::run(\$argv);
         " > ../cakephp/app/Console/cake.php;
-        cat ../cakephp/app/Config/email.php.default | sed 's/you@localhost/travis-monitoring-plugin@imsamurai.me' > ../cakephp/app/Config/email.php;
+        cat ../cakephp/app/Config/email.php.default | sed 's/you@localhost/travis-monitoring-plugin@imsamurai.me/' > ../cakephp/app/Config/email.php;
     fi
   - if [ "$PHPCS" == 1 ]; then
       rm -rf ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
