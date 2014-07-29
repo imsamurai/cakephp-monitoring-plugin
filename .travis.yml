@@ -36,6 +36,7 @@ before_script:
                 CakePlugin::load('Monitoring');
                 require_once(APP.'vendor'.DS.'autoload.php');
             " >> ../cakephp/app/Config/bootstrap.php;
+            cp ../cakephp/app/Config/email.php.default ../cakephp/app/Config/email.php;
       fi
     - if [ "$PHPCS" = 1 ]; then
         rm -rf ~/.phpenv/versions/$(phpenv version-name)/pear/PHP/CodeSniffer/Standards/CakePHP;
