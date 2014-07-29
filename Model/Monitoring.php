@@ -126,8 +126,8 @@ class Monitoring extends AppMonitoringModel {
 		$path = Configure::read('Monitoring.checkersPath');
 		foreach (CakePlugin::loaded() as $plugin) {
 			$fullPath = CakePlugin::path($plugin) . $path . '/*Check.php';
-			foreach (new GlobIterator($fullPath) as $FileInfo) {
-				$checkers[] = $plugin . '.' . $FileInfo->getBasename('.' . $FileInfo->getExtension());
+			foreach (glob($fullPath) as $FileInfo) {
+				$checkers[] = $plugin . '.' . basename($FileInfo, '.php');
 			}
 		}
 
