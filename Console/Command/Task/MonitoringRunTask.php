@@ -47,7 +47,7 @@ class MonitoringRunTask extends AdvancedTask {
 			try {
 				list($plugin, $class) = pluginSplit($checker['class']);
 				App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
-				$Checker = new $class($checker['settings']);
+				$Checker = new $class((array)$checker['settings'] + (array)Configure::read("Monitoring.checkers.$class.defaults"));
 				$success = $Checker->check();
 				$status = $Checker->getStatus();
 				$error = $Checker->getError();
@@ -81,10 +81,12 @@ class MonitoringRunTask extends AdvancedTask {
 			$success = false;
 			$this->err("<error>" . $Exception->getMessage() . "</error>");
 		}
-		if ($success) {
+		if ($success === true) {
 			$this->out("<ok>Sent mail</ok> for checker #$checkerId");
-		} else {
+		} elseif ($success === false) {
 			$this->err("<error>Fail to sent mail</error> for checker #$checkerId");
+		} else {
+			$this->err("<warning>Mail not sent (inactive/no emails/etc)</warning> for checker #$checkerId");
 		}
 	}
 

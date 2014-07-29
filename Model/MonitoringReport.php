@@ -27,7 +27,7 @@ class MonitoringReport {
 	 * 
 	 * @param array $checker
 	 * @param array $logs
-	 * @return bool
+	 * @return bool|null
 	 * @throws Exception
 	 */
 	public function send($checkerId) {
@@ -38,7 +38,7 @@ class MonitoringReport {
 		if (
 				!$checker['active'] || !trim($checker['emails']) || ($emailConfig['enabled'] !== true && !$emailConfig['enabled'][$type])
 		) {
-			return false;
+			return null;
 		}
 
 		list($plugin, $checkerName) = pluginSplit($checker['class']);

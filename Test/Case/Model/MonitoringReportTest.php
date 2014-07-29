@@ -97,7 +97,7 @@ class MonitoringReportTest extends CakeTestCase {
 				->expects($this->never())
 				->method('_getMailer');
 		$success = $Report->send($checker['id']);
-		$this->assertFalse($success);
+		$this->assertNull($success);
 	}
 	
 	/**
