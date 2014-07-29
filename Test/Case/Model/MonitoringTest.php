@@ -235,7 +235,7 @@ class MonitoringTest extends CakeTestCase {
 			'MonitoringLog'
 		));
 		$checker = $this->Monitoring->findById($id);
-		debug($checker);
+		//debug($checker);
 		$this->assertEqual($checker['Monitoring']['last_code_string'], $status);
 		$this->assertEqual($checker['MonitoringLog'][0]['code_string'], $status);
 		$this->assertEqual($checker['MonitoringLog'][0]['error'], $error);
