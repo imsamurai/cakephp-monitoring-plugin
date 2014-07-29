@@ -5,6 +5,7 @@
  * Time: 20:20:20
  * Format: http://book.cakephp.org/2.0/en/views.html
  *
+ * @package Monitoring.View
  */
 /* @var $this View */
 ?>

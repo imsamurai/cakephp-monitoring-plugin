@@ -7,25 +7,12 @@
  * Format: http://book.cakephp.org/2.0/en/models.html
  */
 App::uses('AppMonitoringModel', 'Monitoring.Model');
+App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
  * @package Monitoring.Model
  */
 class Monitoring extends AppMonitoringModel {
-
-	/**
-	 * Default cron value
-	 *
-	 * @var string
-	 */
-	public static $defaultCron = '*/5 * * * *';
-
-	/**
-	 * Default date time format for database
-	 *
-	 * @var string
-	 */
-	public static $DBDateTimeFormat = 'Y-m-d H:i:s';
 
 	/**
 	 * {@inheritdoc}
@@ -63,12 +50,12 @@ class Monitoring extends AppMonitoringModel {
 	 *
 	 * @return bool True if ok
 	 */
-	public function saveCheckResults($checkerId, $codeString = 'OK', $error = '') {
+	public function saveCheckResults($checkerId, $codeString = MonitoringChecker::STATUS_OK, $error = '') {
 		$data = array(
 			$this->alias => array(
 				'id' => (int)$checkerId,
 				'last_code_string' => (string)$codeString,
-				'last_check' => date(static::$DBDateTimeFormat)
+				'last_check' => date(Configure::read('Monitoring.dbDateFormat'))
 			),
 			'MonitoringLog' => array(
 				array(
@@ -84,21 +71,21 @@ class Monitoring extends AppMonitoringModel {
 	/**
 	 * Returns active checkers
 	 *
-	 * @param bool $nextCheck
+	 * @param bool $checkNext
 	 * @return array
 	 */
-	public function getActiveCheckers($nextCheck = true) {
+	public function getActiveCheckers($checkNext = true) {
 		$conditions = array(
 			'conditions' => array(
-				'active' => 1,
+				'active' => 1
 			),
 			'order' => array(
 				'priority' => 'DESC'
 			)
 		);
 
-		if ($nextCheck) {
-			$conditions['conditions']['next_check <='] = date(static::$DBDateTimeFormat);
+		if ($checkNext) {
+			$conditions['conditions']['next_check <='] = date(Configure::read('Monitoring.dbDateFormat'));
 		}
 
 		$checkers = $this->find('all', $conditions);
@@ -119,11 +106,13 @@ class Monitoring extends AppMonitoringModel {
 			$cron = $this->field('cron', array('id' => $this->data[$this->alias]['id']));
 		}
 		if (!$cron) {
-			$cron = static::$defaultCron;
+			$cron = Configure::read('Monitoring.defaults.cron');
 		}
 
 		$this->data[$this->alias]['cron'] = $cron;
-		$this->data[$this->alias]['next_check'] = Cron\CronExpression::factory($cron)->getNextRunDate('now')->format(static::$DBDateTimeFormat);
+		$this->data[$this->alias]['next_check'] = Cron\CronExpression::factory($cron)
+				->getNextRunDate('now')
+				->format(Configure::read('Monitoring.dbDateFormat'));
 		return parent::beforeSave($options);
 	}
 

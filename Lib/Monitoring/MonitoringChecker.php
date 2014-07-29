@@ -13,6 +13,12 @@
 abstract class MonitoringChecker {
 
 	/**
+	 * Statuses
+	 */
+	const STATUS_OK = "OK";
+	const STATUS_FAIL = "FAIL";
+	
+	/**
 	 * Error
 	 *
 	 * @var string
@@ -47,6 +53,15 @@ abstract class MonitoringChecker {
 	 */
 	public function getError() {
 		return $this->_error;
+	}
+	
+	/**
+	 * Return status
+	 * 
+	 * @return string
+	 */
+	public function getStatus() {
+		return $this->_error ? static::STATUS_FAIL : static::STATUS_OK;
 	}
 
 	/**

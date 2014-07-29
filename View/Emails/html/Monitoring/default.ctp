@@ -5,6 +5,7 @@
  * Time: 15:50:45
  * Format: http://book.cakephp.org/2.0/en/views.html
  *
+ * @package Monitoring.View
  */
 App::uses('Sanitize', 'Utility');
 
@@ -16,4 +17,5 @@ App::uses('Sanitize', 'Utility');
 <strong>Description:</strong> <?= $this->Text->autoLink($checker['description'], array('target' => '_blank')); ?><br />
 <strong>Checked:</strong> <?= $checker['last_check']; ?><br />
 <strong>Next check:</strong> <?= $checker['next_check']; ?><br />
-<strong>Errors:</strong><pre><?= $logs[0]['error']; ?></pre><br /
+<strong>Errors:</strong><pre><?= $logs[0]['error']; ?></pre><br />
+<!-- default report !-->

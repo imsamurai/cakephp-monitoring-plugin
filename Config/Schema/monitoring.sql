@@ -21,7 +21,6 @@ CREATE TABLE `monitorings` (
 CREATE TABLE `monitoring_logs` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `monitoring_id` bigint(20) unsigned NOT NULL,
-  `code` int(10) NOT NULL DEFAULT '0',
   `code_string` varchar(100) NOT NULL DEFAULT 'OK',
   `error` longtext NOT NULL,
   `created` datetime NOT NULL,

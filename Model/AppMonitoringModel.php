@@ -25,5 +25,12 @@ class AppMonitoringModel extends AppModel {
 	 * @var array
 	 */
 	public $actsAs = array('Containable');
+	
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var int
+	 */
+	public $recursive = -1;
 
 }

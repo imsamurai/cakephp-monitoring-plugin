@@ -7,11 +7,8 @@
  * 
  * @package Monitoring.View
  */
-
 $modelName = 'Monitoring';
-?>
-<?=
-$this->Form->create($modelName, array(
+echo $this->Form->create($modelName, array(
 	'type' => 'post',
 	'url' => array(
 		'action' => 'save',
@@ -40,4 +37,5 @@ $this->Form->create($modelName, array(
 		<?= $this->Form->submit('Save', array('class' => 'btn btn-primary', 'div' => false)); ?>
 	</div>
 </fieldset>
-<?= $this->Form->end(); ?>
+<?php
+echo $this->Form->end();

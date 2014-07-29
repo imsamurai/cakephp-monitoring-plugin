@@ -8,5 +8,4 @@
  * 
  * @package Monitoring.View
  */
-
 echo $this->Form->input("$modelName.settings.errorText", array('class' => 'input-xxlarge'));

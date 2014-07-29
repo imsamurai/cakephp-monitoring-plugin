@@ -8,6 +8,7 @@
  */
 App::uses('AdvancedTask', 'AdvancedShell.Console/Command/Task');
 App::uses('CakeEmail', 'Network/Email');
+App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
  * @package Monitoring.Console.Command.Task
@@ -48,23 +49,23 @@ class MonitoringRunTask extends AdvancedTask {
 				App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
 				$Checker = new $class($checker['settings']);
 				$success = $Checker->check();
+				$status = $Checker->getStatus();
 				$error = $Checker->getError();
 			} catch (Exception $Exception) {
 				$success = false;
 				$error = $Exception->getMessage();
+				$status = MonitoringChecker::STATUS_FAIL;
 			}
 
-			$this->Monitoring->saveCheckResults($checker['id'], $success ? 'OK' : 'Error', $error);
-			
+			$this->Monitoring->saveCheckResults($checker['id'], $status, $error);
+
 			if (!$success) {
 				$this->err("<error>Error</error> '{$checker['name']}'");
 			} else {
 				$this->out("<ok>OK</ok> '{$checker['name']}'");
 			}
-			
-			if (!$success && !empty($checker['emails'])) {
-				$this->_sendReport($checker['id']);
-			}
+
+			$this->_sendReport($checker['id']);
 		}
 	}
 
@@ -74,24 +75,16 @@ class MonitoringRunTask extends AdvancedTask {
 	 * @param id $checkerId
 	 */
 	protected function _sendReport($checkerId) {
-		$this->Monitoring->contain(array(
-			'MonitoringLog' => array(
-				'limit' => 1,
-				'order' => array('created' => 'DESC')
-			)
-		));
-
-		$checker = $this->Monitoring->find('first', array(
-			'conditions' => array(
-				'id' => $checkerId
-			)
-		));
-		
-		$success = $this->MonitoringReport->send($checker['Monitoring'], $checker['MonitoringLog']);
+		try {
+			$success = $this->MonitoringReport->send($checkerId);
+		} catch (Exception $Exception) {
+			$success = false;
+			$this->err("<error>" . $Exception->getMessage() . "</error>");
+		}
 		if ($success) {
-			$this->out("<ok>Sent mail</ok> for '{$checker['Monitoring']['name']}'");
+			$this->out("<ok>Sent mail</ok> for checker #$checkerId");
 		} else {
-			$this->err("<error>Fail to sent mail</error> for '{$checker['Monitoring']['name']}'");
+			$this->err("<error>Fail to sent mail</error> for checker #$checkerId");
 		}
 	}
 

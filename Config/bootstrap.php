@@ -9,6 +9,7 @@
 Configure::write('Pagination.pages', Configure::read('Pagination.pages') ? Configure::read('Pagination.pages') : 10);
 $config = Hash::mergeDiff((array)Configure::read('Monitoring'), array(
 			'dateFormat' => 'H:i:s d.m.Y',
+			'dbDateFormat' => 'Y-m-d H:i:s',
 			'checkersPath' => 'Lib/Monitoring',
 			'defaults' => array(
 				'cron' => '*/5 * * * *',
@@ -17,9 +18,22 @@ $config = Hash::mergeDiff((array)Configure::read('Monitoring'), array(
 				'priority' => 0
 			),
 			'email' => array(
-				'enabled' => true,
+				'enabled' => array(
+					'fail' => true,
+					'stillFail' => true,
+					'success' => false,
+					'backToNormal' => true,
+				),
 				'config' => 'default',
-				'subject' => 'Monitoring alert caused by %s!'
+				'subject' => array(
+					'fail' => 'Monitoring: %s is fail!',
+					'stillFail' => 'Monitoring: %s still failing!',
+					'success' => 'Monitoring: %s is ok!',
+					'backToNormal' => 'Monitoring: %s back to normal!',
+				)
+			),
+			'views' => array(
+				'pluginFirst' => false
 			),
 			'checkers' => array(
 				'MonitoringSelfFailCheck' => array(

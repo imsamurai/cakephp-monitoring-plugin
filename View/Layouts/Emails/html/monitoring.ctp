@@ -5,6 +5,7 @@
  * Time: 15:49:14
  * Format: http://book.cakephp.org/2.0/en/views.html
  *
+ * @package Monitoring.View
  */
 /* @var $this IDEView */
 ?>
@@ -13,7 +14,7 @@
 	<head>
 		<title><?php
 			//@codingStandardsIgnoreStart
-			echo $title_for_layout;
+			echo $subject;
 			//@codingStandardsIgnoreEnd
 			?></title>
 	</head>
@@ -27,3 +28,4 @@
 		<p>This email was sent using the <a href="https://github.com/imsamurai/cakephp-monitoring-plugin" target="_blank">CakePHP Monitoring Plugin</a> by <a href ="https://imsamurai.me/" target="_blank">imsamurai</a></p>
 	</body>
 </html>
+<!-- default report layout !-->
