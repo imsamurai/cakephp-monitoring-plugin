@@ -70,7 +70,7 @@ abstract class MonitoringChecker {
 	 * @param string $error
 	 */
 	public function addError($error) {
-		$this->_error = ($this->_error ? "\n" : '') . (string)$error;
+		$this->_error .= ($this->_error ? "\n" : '') . (string)$error;
 	}
 
 }
