@@ -38,6 +38,30 @@ class Monitoring extends AppMonitoringModel {
 			'fields' => array('settings')
 		)
 	);
+	
+	/**
+	 * Run checker
+	 * 
+	 * @param array $checker
+	 * @return bool
+	 */
+	public function run(array $checker) {
+		try {
+			list($plugin, $class) = pluginSplit($checker['class']);
+			App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
+			$Checker = new $class((array)$checker['settings'] + (array)Configure::read("Monitoring.checkers.$class.defaults"));
+			$success = $Checker->check();
+			$status = $Checker->getStatus();
+			$error = $Checker->getError();
+		} catch (Exception $Exception) {
+			$success = false;
+			$error = $Exception->getMessage();
+			$status = MonitoringChecker::STATUS_FAIL;
+		}
+
+		$this->saveCheckResults($checker['id'], $status, $error);
+		return $success;
+	}
 
 	/**
 	 * Saves checker results

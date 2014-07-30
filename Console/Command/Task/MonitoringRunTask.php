@@ -43,22 +43,8 @@ class MonitoringRunTask extends AdvancedTask {
 
 		foreach ($checkers as $checker) {
 			$this->out("Check '{$checker['name']}'");
-
-			try {
-				list($plugin, $class) = pluginSplit($checker['class']);
-				App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
-				$Checker = new $class((array)$checker['settings'] + (array)Configure::read("Monitoring.checkers.$class.defaults"));
-				$success = $Checker->check();
-				$status = $Checker->getStatus();
-				$error = $Checker->getError();
-			} catch (Exception $Exception) {
-				$success = false;
-				$error = $Exception->getMessage();
-				$status = MonitoringChecker::STATUS_FAIL;
-			}
-
-			$this->Monitoring->saveCheckResults($checker['id'], $status, $error);
-
+			$success = $this->Monitoring->run($checker);
+			
 			if (!$success) {
 				$this->err("<error>Error</error> '{$checker['name']}'");
 			} else {
