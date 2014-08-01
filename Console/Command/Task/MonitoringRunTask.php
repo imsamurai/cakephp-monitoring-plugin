@@ -40,39 +40,61 @@ class MonitoringRunTask extends AdvancedTask {
 	public function execute() {
 		parent::execute();
 		$checkers = $this->Monitoring->getActiveCheckers();
-
+		
 		foreach ($checkers as $checker) {
-			$this->out("Check '{$checker['name']}'");
-			$success = $this->Monitoring->run($checker);
-			
-			if (!$success) {
-				$this->err("<error>Error</error> '{$checker['name']}'");
-			} else {
-				$this->out("<ok>OK</ok> '{$checker['name']}'");
-			}
-
-			$this->_sendReport($checker['id']);
+			$result = $this->_run($checker);
+			$this->_handleResult($checker, $result);
 		}
+	}
+
+	/**
+	 * Run checker
+	 * 
+	 * @param array $checker
+	 * @return array
+	 */
+	protected function _run(array $checker) {
+		$this->out("<warning>Run</warning> '{$checker['name']}'");
+
+		$this->Monitoring->getDataSource()->reconnect();
+		return $this->Monitoring->run($checker);
+	}
+
+	/**
+	 * Handle checker result
+	 * 
+	 * @param array $checker
+	 * @param array $result
+	 */
+	protected function _handleResult(array $checker, array $result) {
+		if (!$result['success']) {
+			$this->err("<error>Error</error> '{$checker['name']}'");
+		} else {
+			$this->out("<ok>OK</ok> '{$checker['name']}'");
+		}
+		$this->Monitoring->getDataSource()->reconnect();
+		$this->Monitoring->saveCheckResults($checker['id'], $result['status'], $result['error']);
+		$this->_sendReport($checker);
 	}
 
 	/**
 	 * Send email report
 	 *
-	 * @param id $checkerId
+	 * @param array $checker
 	 */
-	protected function _sendReport($checkerId) {
+	protected function _sendReport(array $checker) {
 		try {
-			$success = $this->MonitoringReport->send($checkerId);
+			$success = $this->MonitoringReport->send($checker['id']);
 		} catch (Exception $Exception) {
 			$success = false;
 			$this->err("<error>" . $Exception->getMessage() . "</error>");
 		}
 		if ($success === true) {
-			$this->out("<ok>Sent mail</ok> for checker #$checkerId");
+			$this->out("<ok>Sent mail</ok> for '{$checker['name']}'");
 		} elseif ($success === false) {
-			$this->err("<error>Fail to sent mail</error> for checker #$checkerId");
+			$this->err("<error>Fail to sent mail</error> for '{$checker['name']}'");
 		} else {
-			$this->err("<warning>Mail not sent (inactive/no emails/etc)</warning> for checker #$checkerId");
+			$this->out("<warning>Mail not sent (inactive/no emails/etc)</warning> for '{$checker['name']}'");
 		}
 	}
 

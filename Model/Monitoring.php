@@ -43,41 +43,24 @@ class Monitoring extends AppMonitoringModel {
 	 * Run checker
 	 * 
 	 * @param array $checker
-	 * @return bool
-	 * @throws Exception
+	 * @return array
 	 */
 	public function run(array $checker) {
-		$success = false;
 		try {
 			list($plugin, $class) = pluginSplit($checker['class']);
 			App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
 			$Checker = new $class((array)$checker['settings'] + (array)Configure::read("Monitoring.checkers.$class.defaults"));
-
-			$ProcessManager = new Spork\ProcessManager();
-			$Process = $ProcessManager->fork(function () use ($Checker, &$success) {
-				$success = $Checker->check();
-			});
-			
-			$start = microtime(true);
-			
-			while (!$Process->isExited()) {
-				if (microtime(true) - $start > (int)$checker['timeout']) {
-					$Process->kill(SIGKILL);
-					throw new Exception('Checker timed out!');
-				}
-				sleep(1);
-			}
-
+			$Invoker = new PHP_Invoker();
+			$success = $Invoker->invoke(array($Checker, 'check'), array(), (int)$checker['timeout']);
 			$status = $Checker->getStatus();
 			$error = $Checker->getError();
 		} catch (Exception $Exception) {
 			$success = false;
-			$error = $Exception->getMessage();
+			$error = $Exception->getMessage() ? $Exception->getMessage() : get_class($Exception);
 			$status = MonitoringChecker::STATUS_FAIL;
 		}
-
-		$this->saveCheckResults($checker['id'], $status, $error);
-		return $success;
+		
+		return compact('success', 'status', 'error');
 	}
 
 	/**

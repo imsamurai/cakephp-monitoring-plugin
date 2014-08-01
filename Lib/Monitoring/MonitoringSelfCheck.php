@@ -1,5 +1,6 @@
 <?php
 
+declare(ticks = 1);
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 08.07.2013
@@ -9,7 +10,7 @@
 App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
- * @package Monitoring.Model
+ * @package Monitoring.Lib.Checker
  */
 class MonitoringSelfCheck extends MonitoringChecker {
 
@@ -17,6 +18,7 @@ class MonitoringSelfCheck extends MonitoringChecker {
 	 * {@inheritdoc}
 	 */
 	public function check() {
+		sleep(20);
 		return true;
 	}
 

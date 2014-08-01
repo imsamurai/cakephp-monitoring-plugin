@@ -45,4 +45,5 @@ class MonitoringFixture extends CakeTestFixture {
 	public $records = array(
 	);
 
+
 }

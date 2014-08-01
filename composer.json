@@ -22,7 +22,7 @@
 		"mtdowling/cron-expression": "1.0.2",
 		"imsamurai/cakephp-serializable-behaviour": "1.0.*",
 		"imsamurai/cakephp-advancedshell": "1.3.*",
-		"kriswallsmith/spork": "dev-master"
+		"sebastianbergmann/php-invoker": "1.1.*"
 	},
 	"support": {
 		"email": "im.samuray@gmail.com",

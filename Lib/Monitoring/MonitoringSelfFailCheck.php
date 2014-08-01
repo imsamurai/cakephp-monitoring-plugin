@@ -1,5 +1,6 @@
 <?php
 
+declare(ticks = 1);
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 08.07.2013
@@ -9,7 +10,7 @@
 App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
- * @package Monitoring.Model
+ * @package Monitoring.Lib.Checker
  */
 class MonitoringSelfFailCheck extends MonitoringChecker {
 
@@ -21,5 +22,5 @@ class MonitoringSelfFailCheck extends MonitoringChecker {
 		$this->addError($this->_settings['errorText']);
 		return false;
 	}
-	
+
 }
