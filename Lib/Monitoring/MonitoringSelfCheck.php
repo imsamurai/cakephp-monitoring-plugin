@@ -18,7 +18,6 @@ class MonitoringSelfCheck extends MonitoringChecker {
 	 * {@inheritdoc}
 	 */
 	public function check() {
-		sleep(20);
 		return true;
 	}
 
