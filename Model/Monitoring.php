@@ -155,6 +155,10 @@ class Monitoring extends AppMonitoringModel {
 			}
 		}
 
+		$fullPath = APP . $path . '/*Check.php';
+		foreach (glob($fullPath) as $FileInfo) {
+			$checkers[] = basename($FileInfo, '.php');
+		}
 		return $checkers;
 	}
 
