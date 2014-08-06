@@ -36,6 +36,43 @@ class MonitoringTest extends CakeTestCase {
 	public function setUp() {
 		parent::setUp();
 		$this->Monitoring = ClassRegistry::init('Monitoring.Monitoring');
+		$config = array(
+			'dateFormat' => 'H:i:s d.m.Y',
+			'dbDateFormat' => 'Y-m-d H:i:s',
+			'checkersPath' => 'Lib/Monitoring',
+			'defaults' => array(
+				'cron' => '* */5 * * *',
+				'timeout' => 600,
+				'active' => false,
+				'priority' => 0
+			),
+			'email' => array(
+				'enabled' => array(
+					'fail' => true,
+					'stillFail' => true,
+					'success' => false,
+					'backToNormal' => true,
+				),
+				'config' => 'default',
+				'subject' => array(
+					'fail' => 'Monitoring: %s is fail!',
+					'stillFail' => 'Monitoring: %s still failing!',
+					'success' => 'Monitoring: %s is ok!',
+					'backToNormal' => 'Monitoring: %s back to normal!',
+				)
+			),
+			'views' => array(
+				'pluginFirst' => false
+			),
+			'checkers' => array(
+				'MonitoringSelfFailCheck' => array(
+					'defaults' => array(
+						'errorText' => 'MonitoringSelfFailCheck error text'
+					)
+				)
+			)
+		);
+		Configure::write('Monitoring', $config);
 	}
 
 	/**
@@ -191,8 +228,8 @@ class MonitoringTest extends CakeTestCase {
 					'active' => 1,
 					'priority' => 1,
 					'last_check' => '0000-00-00 00:00:00',
-					'cron' => '*/5 * * * *',
-					'next_check' => Cron\CronExpression::factory('*/5 * * * *')
+					'cron' => '* */5 * * *',
+					'next_check' => Cron\CronExpression::factory('* */5 * * *')
 							->getNextRunDate('now')
 							->format(Configure::read('Monitoring.dbDateFormat'))
 				)
