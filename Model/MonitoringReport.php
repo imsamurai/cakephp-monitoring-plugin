@@ -25,18 +25,37 @@ class MonitoringReport {
 	/**
 	 * Send notification
 	 * 
-	 * @param array $checker
-	 * @param array $logs
+	 * @param int $checkerId
 	 * @return bool|null
-	 * @throws Exception
 	 */
 	public function send($checkerId) {
-		$emailConfig = Configure::read('Monitoring.email');
 		list($checker, $logs) = $this->_getCheckerData($checkerId);
 		$type = $this->_getType($logs);
+		$this->_sendSMS($checker, $logs, $type, Configure::read('Monitoring.sms'));
+		return $this->_sendMail($checker, $logs, $type, Configure::read('Monitoring.email'));
+	}
 
+	/**
+	 * Check if SMS service is enabled
+	 * 
+	 * @return bool
+	 */
+	public function isSMSEnabled() {
+		return CakePlugin::loaded('SMSFlySource');
+	}
+
+	/**
+	 * Send email
+	 * 
+	 * @param array $checker
+	 * @param array $logs
+	 * @param string $type
+	 * @param array $mailerConfig
+	 * @return bool|null
+	 */
+	protected function _sendMail($checker, $logs, $type, $mailerConfig) {
 		if (
-				!$checker['active'] || !trim($checker['emails']) || ($emailConfig['enabled'] !== true && !$emailConfig['enabled'][$type])
+				!$checker['active'] || !trim($checker['emails']) || ($mailerConfig['enabled'] !== true && !$mailerConfig['enabled'][$type])
 		) {
 			return null;
 		}
@@ -45,9 +64,9 @@ class MonitoringReport {
 
 		$this->_initViewPaths($plugin);
 
-		$subject = $this->_buildSubject($emailConfig['subject'][$type], $checker, $logs);
+		$subject = $this->_buildSubject($mailerConfig['subject'][$type], $checker, $logs);
 		$Email = $this->_getMailer()
-				->config($emailConfig['config'])
+				->config($mailerConfig['config'])
 				->to($this->_getEmails($checker))
 				->subject($subject)
 				->template('Monitoring/' . Inflector::underscore($checkerName), 'monitoring')
@@ -60,6 +79,40 @@ class MonitoringReport {
 		} catch (MissingViewException $Exception) {
 			return (bool)$Email->template('Monitoring/default', 'monitoring')->send();
 		}
+	}
+
+	/**
+	 * Send SMS
+	 * 
+	 * @param array $checker
+	 * @param array $logs
+	 * @param string $type
+	 * @param array $mailerConfig
+	 * @return bool|null
+	 */
+	protected function _sendSMS($checker, $logs, $type, $mailerConfig) {
+		if (
+				!$this->isSMSEnabled() || !$checker['active'] || !trim($checker['sms']) || ($mailerConfig['enabled'] !== true && !$mailerConfig['enabled'][$type])
+		) {
+			return null;
+		}
+
+		$subject = $this->_buildSubject($mailerConfig['subject'][$type], $checker, $logs) .
+				'(' . Configure::read('App.fullBaseUrl') . ')';
+		$SMSMailer = $this->_getSMSMailer();
+		return $SMSMailer->sendSMS($mailerConfig['source'], array(
+					$subject => $this->_getSMS($checker)
+						), $mailerConfig['desc']);
+	}
+
+	/**
+	 * Return sms mailer
+	 * 
+	 * @param array $config
+	 * @return \Model
+	 */
+	protected function _getSMSMailer() {
+		return ClassRegistry::init('SMSFlySource.SMSFly');
 	}
 
 	/**
@@ -109,6 +162,16 @@ class MonitoringReport {
 	 */
 	protected function _getEmails(array $checker) {
 		return array_map('trim', explode(',', $checker['emails']));
+	}
+
+	/**
+	 * Return checker SMS numbers
+	 * 
+	 * @param array $checker
+	 * @return array
+	 */
+	protected function _getSMS(array $checker) {
+		return array_map('trim', explode(',', $checker['sms']));
 	}
 
 	/**

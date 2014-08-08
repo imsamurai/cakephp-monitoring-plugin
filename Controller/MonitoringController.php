@@ -8,7 +8,11 @@
  */
 
 /**
- * @spackage Monitoring.Controller
+ * 
+ * @property Monitoring $Monitoring Monitoring model
+ * @property MonitoringReport $MonitoringReport Monitoring report model
+ * 
+ * @subpackage name Monitoring.Controller
  */
 class MonitoringController extends AppController {
 
@@ -17,7 +21,7 @@ class MonitoringController extends AppController {
 	 *
 	 * @var array 
 	 */
-	public $uses = array('Monitoring.Monitoring');
+	public $uses = array('Monitoring.Monitoring', 'Monitoring.MonitoringReport');
 	
 	/**
 	 * {@inheritdoc}
@@ -76,6 +80,7 @@ class MonitoringController extends AppController {
 		
 		$this->request->data = $checker;
 		$this->set('settingsView', Inflector::underscore($class));
+		$this->set('isSMSEnabled', $this->MonitoringReport->isSMSEnabled());
 	}
 
 	/**

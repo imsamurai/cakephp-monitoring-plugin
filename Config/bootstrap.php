@@ -41,6 +41,23 @@ $config = Hash::mergeDiff((array)Configure::read('Monitoring'), array(
 						'errorText' => 'MonitoringSelfFailCheck error text'
 					)
 				)
+			),
+			'sms' => array(
+				'enabled' => array(
+					'fail' => true,
+					'stillFail' => false,
+					'success' => false,
+					'backToNormal' => false,
+				),
+				'subject' => array(
+					'fail' => 'Monitoring: %s is fail!',
+					'stillFail' => 'Monitoring: %s still failing!',
+					'success' => 'Monitoring: %s is ok!',
+					'backToNormal' => 'Monitoring: %s back to normal!',
+				),
+				//you must setup valid source
+				'source' => null,
+				'desc' => 'Monitoring'
 			)
 		));
 Configure::write('Monitoring', $config);

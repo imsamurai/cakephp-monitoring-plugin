@@ -194,5 +194,5 @@ class Monitoring extends AppMonitoringModel {
 				) + Configure::read('Monitoring.defaults');
 		return $this->save($data);
 	}
-
+	
 }

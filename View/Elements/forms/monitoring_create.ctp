@@ -26,7 +26,12 @@ echo $this->Form->create($modelName, array(
 	<?= $this->Form->input('timeout', array('type' => 'number', 'help' => 'maximum waiting time for check in seconds')); ?>
 	<?= $this->Form->input('active', array('type' => 'checkbox')); ?>
 	<?= $this->Form->input('priority', array('type' => 'number', 'help' => 'zero means highest')); ?>
-	<?= $this->Form->input('emails', array('type' => 'textarea', 'help' => 'coma-separated email list that will be used for send messages in case of failure', 'style' => 'width:600px;height:100px;')); ?>
+	<?= $this->Form->input('emails', array('type' => 'textarea', 'help' => 'coma-separated email list that will be used for sending messages', 'style' => 'width:600px;height:100px;')); ?>
+	<?php
+	if ($isSMSEnabled) {
+		echo $this->Form->input('sms', array('type' => 'textarea', 'help' => 'coma-separated phome list that will be used for sending messages', 'style' => 'width:600px;height:100px;'));
+	}
+	?>
 	<?php
 	$settingsFields = $this->element("Monitoring/$settingsView", compact('modelName'), array('ignoreMissing' => true));
 	if ($settingsFields) {
