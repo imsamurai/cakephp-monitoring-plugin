@@ -41,7 +41,7 @@ class MonitoringTest extends CakeTestCase {
 			'dbDateFormat' => 'Y-m-d H:i:s',
 			'checkersPath' => 'Lib/Monitoring',
 			'defaults' => array(
-				'cron' => '* */5 * * *',
+				'cron' => '0 15 * * *',
 				'timeout' => 600,
 				'active' => false,
 				'priority' => 0
@@ -228,8 +228,8 @@ class MonitoringTest extends CakeTestCase {
 					'active' => 1,
 					'priority' => 1,
 					'last_check' => '0000-00-00 00:00:00',
-					'cron' => '* */5 * * *',
-					'next_check' => Cron\CronExpression::factory('* */5 * * *')
+					'cron' => '0 15 * * *',
+					'next_check' => Cron\CronExpression::factory('0 15 * * *')
 							->getNextRunDate('now')
 							->format(Configure::read('Monitoring.dbDateFormat'))
 				)
