@@ -49,6 +49,9 @@ class Monitoring extends AppMonitoringModel {
 		try {
 			list($plugin, $class) = pluginSplit($checker['class']);
 			App::uses($class, $plugin . '.' . Configure::read('Monitoring.checkersPath'));
+			if (!class_exists($class)) {
+				throw new Exception("Checker class not found! ($class)");
+			}
 			$Checker = new $class((array)$checker['settings'] + (array)Configure::read("Monitoring.checkers.$class.defaults"));
 			$Invoker = new PHP_Invoker();
 			$success = $Invoker->invoke(array($Checker, 'check'), array(), (int)$checker['timeout']);
