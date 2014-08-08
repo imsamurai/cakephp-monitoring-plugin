@@ -45,7 +45,7 @@ $config = Hash::mergeDiff((array)Configure::read('Monitoring'), array(
 			'sms' => array(
 				'enabled' => array(
 					'fail' => true,
-					'stillFail' => false,
+					'stillFail' => true,
 					'success' => false,
 					'backToNormal' => false,
 				),
