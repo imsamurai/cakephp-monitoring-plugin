@@ -20,231 +20,231 @@
 <path fill="none" stroke="gray" d="M286,-326C286,-320 292,-314 298,-314"/>
 <text text-anchor="middle" x="581" y="-1292.1" font-family="Times Roman,serif" font-size="11.00" fill="gray">Global</text>
 </g>
-<!-- \\MonitoringShell -->
-<g id="node2" class="node"><title>\\MonitoringShell</title>
-<polygon fill="none" stroke="black" points="794,-898 676,-898 676,-862 794,-862 794,-898"/>
-<text text-anchor="middle" x="735" y="-877.1" font-family="Courier,monospace" font-size="11.00">MonitoringShell</text>
+<!-- \\MonitoringLogFixture -->
+<g id="node2" class="node"><title>\\MonitoringLogFixture</title>
+<polygon fill="none" stroke="black" points="811,-898 659,-898 659,-862 811,-862 811,-898"/>
+<text text-anchor="middle" x="735" y="-877.1" font-family="Courier,monospace" font-size="11.00">MonitoringLogFixture</text>
 </g>
-<!-- \\AdvancedShell -->
-<g id="node23" class="node"><title>\\AdvancedShell</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-288" rx="85.7684" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-284.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AdvancedShell</text>
+<!-- \\CakeTestFixture -->
+<g id="node23" class="node"><title>\\CakeTestFixture</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-288" rx="92.1303" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-284.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestFixture</text>
 </g>
-<!-- \\MonitoringShell&#45;&gt;\\AdvancedShell -->
-<g id="edge3" class="edge"><title>\\MonitoringShell&#45;&gt;\\AdvancedShell</title>
-<path fill="none" stroke="black" d="M675.912,-882.53C649.71,-880.393 620.653,-872.976 602,-853 435.85,-675.068 702.215,-482.069 530,-310 508.904,-288.922 478.116,-281.146 448.704,-279.418"/>
-<polygon fill="none" stroke="black" points="448.496,-275.909 438.376,-279.048 448.244,-282.904 448.496,-275.909"/>
+<!-- \\MonitoringLogFixture&#45;&gt;\\CakeTestFixture -->
+<g id="edge3" class="edge"><title>\\MonitoringLogFixture&#45;&gt;\\CakeTestFixture</title>
+<path fill="none" stroke="black" d="M658.706,-880.34C637.669,-876.612 616.633,-868.671 602,-853 435.85,-675.068 702.215,-482.069 530,-310 510.194,-290.21 481.844,-282.146 454.111,-279.805"/>
+<polygon fill="none" stroke="black" points="454.132,-276.3 443.939,-279.19 453.709,-283.287 454.132,-276.3"/>
 </g>
-<!-- \\MonitoringUpdateTask -->
-<g id="node3" class="node"><title>\\MonitoringUpdateTask</title>
-<polygon fill="none" stroke="black" points="811,-844 659,-844 659,-808 811,-808 811,-844"/>
-<text text-anchor="middle" x="735" y="-823.1" font-family="Courier,monospace" font-size="11.00">MonitoringUpdateTask</text>
+<!-- \\MonitoringFixture -->
+<g id="node3" class="node"><title>\\MonitoringFixture</title>
+<polygon fill="none" stroke="black" points="800,-844 670,-844 670,-808 800,-808 800,-844"/>
+<text text-anchor="middle" x="735" y="-823.1" font-family="Courier,monospace" font-size="11.00">MonitoringFixture</text>
 </g>
-<!-- \\AdvancedTask -->
-<g id="node25" class="node"><title>\\AdvancedTask</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-234" rx="82.939" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-230.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AdvancedTask</text>
+<!-- \\MonitoringFixture&#45;&gt;\\CakeTestFixture -->
+<g id="edge5" class="edge"><title>\\MonitoringFixture&#45;&gt;\\CakeTestFixture</title>
+<path fill="none" stroke="black" d="M669.215,-827.728C644.931,-824.876 619.176,-817.131 602,-799 450.923,-639.521 686.511,-464.149 530,-310 510.145,-290.445 481.931,-282.4 454.332,-280.006"/>
+<polygon fill="none" stroke="black" points="454.408,-276.504 444.208,-279.368 453.968,-283.49 454.408,-276.504"/>
 </g>
-<!-- \\MonitoringUpdateTask&#45;&gt;\\AdvancedTask -->
-<g id="edge5" class="edge"><title>\\MonitoringUpdateTask&#45;&gt;\\AdvancedTask</title>
-<path fill="none" stroke="black" d="M658.718,-826.328C637.681,-822.601 616.643,-814.662 602,-799 437.247,-622.777 698.244,-433.893 530,-261 509.754,-240.195 480.245,-231.43 451.645,-228.511"/>
-<polygon fill="none" stroke="black" points="451.829,-225.014 441.584,-227.712 451.275,-231.992 451.829,-225.014"/>
+<!-- \\MonitoringTest -->
+<g id="node4" class="node"><title>\\MonitoringTest</title>
+<polygon fill="none" stroke="black" points="790,-628 680,-628 680,-592 790,-592 790,-628"/>
+<text text-anchor="middle" x="735" y="-607.1" font-family="Courier,monospace" font-size="11.00">MonitoringTest</text>
 </g>
-<!-- \\MonitoringRunTask -->
-<g id="node4" class="node"><title>\\MonitoringRunTask</title>
-<polygon fill="none" stroke="black" points="800,-790 670,-790 670,-754 800,-754 800,-790"/>
-<text text-anchor="middle" x="735" y="-769.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTask</text>
+<!-- \\CakeTestCase -->
+<g id="node26" class="node"><title>\\CakeTestCase</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-234" rx="82.0244" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-230.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestCase</text>
 </g>
-<!-- \\MonitoringRunTask&#45;&gt;\\AdvancedTask -->
-<g id="edge7" class="edge"><title>\\MonitoringRunTask&#45;&gt;\\AdvancedTask</title>
-<path fill="none" stroke="black" d="M669.229,-773.715C644.946,-770.862 619.189,-763.118 602,-745 452.317,-587.228 682.808,-415.747 530,-261 509.694,-240.437 480.326,-231.692 451.862,-228.719"/>
-<polygon fill="none" stroke="black" points="452.1,-225.227 441.848,-227.898 451.528,-232.204 452.1,-225.227"/>
+<!-- \\MonitoringTest&#45;&gt;\\CakeTestCase -->
+<g id="edge7" class="edge"><title>\\MonitoringTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M679.367,-611.996C652.674,-609.964 622.188,-602.795 602,-583 497.29,-480.333 636.742,-361.553 530,-261 509.152,-241.36 479.952,-232.766 451.789,-229.651"/>
+<polygon fill="none" stroke="black" points="451.747,-226.134 441.478,-228.742 451.132,-233.107 451.747,-226.134"/>
 </g>
-<!-- \\MonitoringController -->
-<g id="node5" class="node"><title>\\MonitoringController</title>
+<!-- \\MonitoringReportTest -->
+<g id="node5" class="node"><title>\\MonitoringReportTest</title>
 <polygon fill="none" stroke="black" points="811,-736 659,-736 659,-700 811,-700 811,-736"/>
-<text text-anchor="middle" x="735" y="-715.1" font-family="Courier,monospace" font-size="11.00">MonitoringController</text>
+<text text-anchor="middle" x="735" y="-715.1" font-family="Courier,monospace" font-size="11.00">MonitoringReportTest</text>
 </g>
-<!-- \\AppController -->
-<g id="node28" class="node"><title>\\AppController</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-180" rx="82.0244" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-176.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AppController</text>
+<!-- \\MonitoringReportTest&#45;&gt;\\CakeTestCase -->
+<g id="edge9" class="edge"><title>\\MonitoringReportTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M658.689,-717.964C637.778,-714.201 616.816,-706.335 602,-691 467.358,-551.648 667.401,-397.632 530,-261 509.228,-240.345 479.293,-231.686 450.486,-228.811"/>
+<polygon fill="none" stroke="black" points="450.602,-225.31 440.361,-228.025 450.061,-232.289 450.602,-225.31"/>
 </g>
-<!-- \\MonitoringController&#45;&gt;\\AppController -->
-<g id="edge9" class="edge"><title>\\MonitoringController&#45;&gt;\\AppController</title>
-<path fill="none" stroke="black" d="M658.86,-718.194C637.828,-714.462 616.757,-706.554 602,-691 452.317,-533.228 682.808,-361.747 530,-207 509.325,-186.063 479.255,-177.378 450.31,-174.563"/>
-<polygon fill="none" stroke="black" points="450.369,-171.057 440.136,-173.801 449.847,-178.038 450.369,-171.057"/>
+<!-- \\MonitoringRunTaskTest -->
+<g id="node6" class="node"><title>\\MonitoringRunTaskTest</title>
+<polygon fill="none" stroke="black" points="814,-682 656,-682 656,-646 814,-646 814,-682"/>
+<text text-anchor="middle" x="735" y="-661.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTest</text>
 </g>
-<!-- \\MonitoringSelfCheck -->
-<g id="node6" class="node"><title>\\MonitoringSelfCheck</title>
-<polygon fill="none" stroke="black" points="807,-1114 663,-1114 663,-1078 807,-1078 807,-1114"/>
-<text text-anchor="middle" x="735" y="-1093.1" font-family="Courier,monospace" font-size="11.00">MonitoringSelfCheck</text>
+<!-- \\MonitoringRunTaskTest&#45;&gt;\\CakeTestCase -->
+<g id="edge11" class="edge"><title>\\MonitoringRunTaskTest&#45;&gt;\\CakeTestCase</title>
+<path fill="none" stroke="black" d="M655.794,-663.154C635.933,-659.181 616.248,-651.407 602,-637 482.356,-516.023 652.039,-379.561 530,-261 509.178,-240.771 479.538,-232.138 450.994,-229.163"/>
+<polygon fill="none" stroke="black" points="451.213,-225.669 440.959,-228.336 450.638,-232.645 451.213,-225.669"/>
+</g>
+<!-- \\MonitoringRunTaskTestCheckerTimeouted -->
+<g id="node7" class="node"><title>\\MonitoringRunTaskTestCheckerTimeouted</title>
+<polygon fill="none" stroke="black" points="868,-1114 602,-1114 602,-1078 868,-1078 868,-1114"/>
+<text text-anchor="middle" x="735" y="-1093.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerTimeouted</text>
 </g>
 <!-- \\MonitoringChecker -->
-<g id="node7" class="node"><title>\\MonitoringChecker</title>
+<g id="node17" class="node"><title>\\MonitoringChecker</title>
 <polygon fill="none" stroke="black" points="429,-1168 297,-1168 297,-1132 429,-1132 429,-1168"/>
 <text text-anchor="start" x="329" y="-1155.43" font-family="Courier,monospace" font-size="11.00">«abstract»</text>
 <text text-anchor="start" x="305.5" y="-1142.23" font-family="Courier,monospace" font-size="11.00">MonitoringChecker</text>
 </g>
-<!-- \\MonitoringSelfCheck&#45;&gt;\\MonitoringChecker -->
-<g id="edge11" class="edge"><title>\\MonitoringSelfCheck&#45;&gt;\\MonitoringChecker</title>
-<path fill="none" stroke="black" d="M662.392,-1106.54C598.166,-1115.86 504.772,-1129.42 439.423,-1138.91"/>
-<polygon fill="none" stroke="black" points="438.578,-1135.49 429.185,-1140.39 439.584,-1142.42 438.578,-1135.49"/>
+<!-- \\MonitoringRunTaskTestCheckerTimeouted&#45;&gt;\\MonitoringChecker -->
+<g id="edge13" class="edge"><title>\\MonitoringRunTaskTestCheckerTimeouted&#45;&gt;\\MonitoringChecker</title>
+<path fill="none" stroke="black" d="M610.871,-1114.02C554.041,-1122.27 488.514,-1131.78 439.112,-1138.95"/>
+<polygon fill="none" stroke="black" points="438.533,-1135.5 429.139,-1140.4 439.538,-1142.43 438.533,-1135.5"/>
 </g>
-<!-- \\MonitoringSelfFailCheck -->
-<g id="node8" class="node"><title>\\MonitoringSelfFailCheck</title>
-<polygon fill="none" stroke="black" points="821,-1060 649,-1060 649,-1024 821,-1024 821,-1060"/>
-<text text-anchor="middle" x="735" y="-1039.1" font-family="Courier,monospace" font-size="11.00">MonitoringSelfFailCheck</text>
+<!-- \\MonitoringRunTaskTestCheckerTrue -->
+<g id="node8" class="node"><title>\\MonitoringRunTaskTestCheckerTrue</title>
+<polygon fill="none" stroke="black" points="851,-1060 619,-1060 619,-1024 851,-1024 851,-1060"/>
+<text text-anchor="middle" x="735" y="-1039.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerTrue</text>
 </g>
-<!-- \\MonitoringSelfFailCheck&#45;&gt;\\MonitoringChecker -->
-<g id="edge13" class="edge"><title>\\MonitoringSelfFailCheck&#45;&gt;\\MonitoringChecker</title>
-<path fill="none" stroke="black" d="M648.773,-1057.85C633.126,-1061.19 617.014,-1064.95 602,-1069 538.882,-1086.03 468.143,-1110.73 420.112,-1128.37"/>
+<!-- \\MonitoringRunTaskTestCheckerTrue&#45;&gt;\\MonitoringChecker -->
+<g id="edge15" class="edge"><title>\\MonitoringRunTaskTestCheckerTrue&#45;&gt;\\MonitoringChecker</title>
+<path fill="none" stroke="black" d="M638.768,-1060.03C626.34,-1062.8 613.829,-1065.81 602,-1069 538.882,-1086.03 468.143,-1110.73 420.112,-1128.37"/>
 <polygon fill="none" stroke="black" points="418.688,-1125.16 410.518,-1131.91 421.112,-1131.73 418.688,-1125.16"/>
 </g>
-<!-- \\MonitoringFixture -->
-<g id="node9" class="node"><title>\\MonitoringFixture</title>
-<polygon fill="none" stroke="black" points="800,-682 670,-682 670,-646 800,-646 800,-682"/>
-<text text-anchor="middle" x="735" y="-661.1" font-family="Courier,monospace" font-size="11.00">MonitoringFixture</text>
+<!-- \\MonitoringRunTaskTestCheckerFalse -->
+<g id="node9" class="node"><title>\\MonitoringRunTaskTestCheckerFalse</title>
+<polygon fill="none" stroke="black" points="854,-1276 616,-1276 616,-1240 854,-1240 854,-1276"/>
+<text text-anchor="middle" x="735" y="-1255.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerFalse</text>
 </g>
-<!-- \\CakeTestFixture -->
-<g id="node32" class="node"><title>\\CakeTestFixture</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-126" rx="92.1303" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-122.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestFixture</text>
-</g>
-<!-- \\MonitoringFixture&#45;&gt;\\CakeTestFixture -->
-<g id="edge15" class="edge"><title>\\MonitoringFixture&#45;&gt;\\CakeTestFixture</title>
-<path fill="none" stroke="black" d="M669.229,-665.715C644.946,-662.862 619.189,-655.118 602,-637 452.317,-479.228 682.808,-307.747 530,-153 512.056,-134.828 487.033,-125.886 461.812,-122"/>
-<polygon fill="none" stroke="black" points="462.138,-118.513 451.774,-120.71 461.246,-125.456 462.138,-118.513"/>
-</g>
-<!-- \\MonitoringLogFixture -->
-<g id="node10" class="node"><title>\\MonitoringLogFixture</title>
-<polygon fill="none" stroke="black" points="811,-628 659,-628 659,-592 811,-592 811,-628"/>
-<text text-anchor="middle" x="735" y="-607.1" font-family="Courier,monospace" font-size="11.00">MonitoringLogFixture</text>
-</g>
-<!-- \\MonitoringLogFixture&#45;&gt;\\CakeTestFixture -->
-<g id="edge17" class="edge"><title>\\MonitoringLogFixture&#45;&gt;\\CakeTestFixture</title>
-<path fill="none" stroke="black" d="M658.689,-609.964C637.778,-606.201 616.816,-598.335 602,-583 467.358,-443.648 667.401,-289.632 530,-153 511.983,-135.083 487.07,-126.193 461.98,-122.274"/>
-<polygon fill="none" stroke="black" points="462.365,-118.795 451.995,-120.967 461.456,-125.736 462.365,-118.795"/>
+<!-- \\MonitoringRunTaskTestCheckerFalse&#45;&gt;\\MonitoringChecker -->
+<g id="edge17" class="edge"><title>\\MonitoringRunTaskTestCheckerFalse&#45;&gt;\\MonitoringChecker</title>
+<path fill="none" stroke="black" d="M638.768,-1239.97C626.34,-1237.2 613.829,-1234.19 602,-1231 538.882,-1213.97 468.143,-1189.27 420.112,-1171.63"/>
+<polygon fill="none" stroke="black" points="421.112,-1168.27 410.518,-1168.09 418.688,-1174.84 421.112,-1168.27"/>
 </g>
 <!-- \\AllMonitoringTest -->
-<g id="node11" class="node"><title>\\AllMonitoringTest</title>
+<g id="node10" class="node"><title>\\AllMonitoringTest</title>
 <polygon fill="none" stroke="black" points="800,-574 670,-574 670,-538 800,-538 800,-574"/>
 <text text-anchor="middle" x="735" y="-553.1" font-family="Courier,monospace" font-size="11.00">AllMonitoringTest</text>
 </g>
 <!-- \\PHPUnit_Framework_TestSuite -->
-<g id="node35" class="node"><title>\\PHPUnit_Framework_TestSuite</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-72" rx="166.877" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-68.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\PHPUnit_Framework_TestSuite</text>
+<g id="node33" class="node"><title>\\PHPUnit_Framework_TestSuite</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-180" rx="166.877" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-176.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\PHPUnit_Framework_TestSuite</text>
 </g>
 <!-- \\AllMonitoringTest&#45;&gt;\\PHPUnit_Framework_TestSuite -->
 <g id="edge19" class="edge"><title>\\AllMonitoringTest&#45;&gt;\\PHPUnit_Framework_TestSuite</title>
-<path fill="none" stroke="black" d="M669.398,-557.553C645.139,-554.677 619.354,-546.961 602,-529 467.358,-389.648 667.401,-235.632 530,-99 525.285,-94.3113 520.098,-90.2408 514.559,-86.7158"/>
-<polygon fill="none" stroke="black" points="516.006,-83.5125 505.582,-81.615 512.547,-89.5986 516.006,-83.5125"/>
+<path fill="none" stroke="black" d="M669.207,-556.978C645.213,-553.975 619.665,-546.32 602,-529 497.29,-426.333 636.742,-307.553 530,-207 524.901,-202.197 519.303,-198.054 513.342,-194.491"/>
+<polygon fill="none" stroke="black" points="514.832,-191.318 504.366,-189.675 511.523,-197.487 514.832,-191.318"/>
 </g>
-<!-- \\MonitoringRunTaskTest -->
-<g id="node12" class="node"><title>\\MonitoringRunTaskTest</title>
-<polygon fill="none" stroke="black" points="814,-412 656,-412 656,-376 814,-376 814,-412"/>
-<text text-anchor="middle" x="735" y="-391.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTest</text>
+<!-- \\MonitoringReport -->
+<g id="node11" class="node"><title>\\MonitoringReport</title>
+<polygon fill="none" stroke="black" points="797,-790 673,-790 673,-754 797,-754 797,-790"/>
+<text text-anchor="middle" x="735" y="-769.1" font-family="Courier,monospace" font-size="11.00">MonitoringReport</text>
 </g>
-<!-- \\CakeTestCase -->
-<g id="node37" class="node"><title>\\CakeTestCase</title>
-<ellipse fill="none" stroke="black" cx="363" cy="-18" rx="82.0244" ry="18.3848"/>
-<text text-anchor="middle" x="363" y="-14.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\CakeTestCase</text>
-</g>
-<!-- \\MonitoringRunTaskTest&#45;&gt;\\CakeTestCase -->
-<g id="edge21" class="edge"><title>\\MonitoringRunTaskTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M655.738,-392.792C635.996,-388.798 616.384,-381.104 602,-367 497.29,-264.333 636.742,-145.553 530,-45 509.152,-25.3603 479.952,-16.7658 451.789,-13.6513"/>
-<polygon fill="none" stroke="black" points="451.747,-10.1341 441.478,-12.7415 451.132,-17.107 451.747,-10.1341"/>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerTimeouted -->
-<g id="node13" class="node"><title>\\MonitoringRunTaskTestCheckerTimeouted</title>
-<polygon fill="none" stroke="black" points="868,-1276 602,-1276 602,-1240 868,-1240 868,-1276"/>
-<text text-anchor="middle" x="735" y="-1255.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerTimeouted</text>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerTimeouted&#45;&gt;\\MonitoringChecker -->
-<g id="edge23" class="edge"><title>\\MonitoringRunTaskTestCheckerTimeouted&#45;&gt;\\MonitoringChecker</title>
-<path fill="none" stroke="black" d="M638.768,-1239.97C626.34,-1237.2 613.829,-1234.19 602,-1231 538.882,-1213.97 468.143,-1189.27 420.112,-1171.63"/>
-<polygon fill="none" stroke="black" points="421.112,-1168.27 410.518,-1168.09 418.688,-1174.84 421.112,-1168.27"/>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerTrue -->
-<g id="node14" class="node"><title>\\MonitoringRunTaskTestCheckerTrue</title>
-<polygon fill="none" stroke="black" points="851,-1222 619,-1222 619,-1186 851,-1186 851,-1222"/>
-<text text-anchor="middle" x="735" y="-1201.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerTrue</text>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerTrue&#45;&gt;\\MonitoringChecker -->
-<g id="edge25" class="edge"><title>\\MonitoringRunTaskTestCheckerTrue&#45;&gt;\\MonitoringChecker</title>
-<path fill="none" stroke="black" d="M618.318,-1187.06C559.888,-1178.58 490.808,-1168.55 439.247,-1161.07"/>
-<polygon fill="none" stroke="black" points="439.576,-1157.58 429.177,-1159.61 438.57,-1164.51 439.576,-1157.58"/>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerFalse -->
-<g id="node15" class="node"><title>\\MonitoringRunTaskTestCheckerFalse</title>
-<polygon fill="none" stroke="black" points="854,-1168 616,-1168 616,-1132 854,-1132 854,-1168"/>
-<text text-anchor="middle" x="735" y="-1147.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTaskTestCheckerFalse</text>
-</g>
-<!-- \\MonitoringRunTaskTestCheckerFalse&#45;&gt;\\MonitoringChecker -->
-<g id="edge27" class="edge"><title>\\MonitoringRunTaskTestCheckerFalse&#45;&gt;\\MonitoringChecker</title>
-<path fill="none" stroke="black" d="M615.249,-1150C557.525,-1150 490.008,-1150 439.359,-1150"/>
-<polygon fill="none" stroke="black" points="439.139,-1146.5 429.139,-1150 439.139,-1153.5 439.139,-1146.5"/>
-</g>
-<!-- \\MonitoringTest -->
-<g id="node16" class="node"><title>\\MonitoringTest</title>
-<polygon fill="none" stroke="black" points="790,-358 680,-358 680,-322 790,-322 790,-358"/>
-<text text-anchor="middle" x="735" y="-337.1" font-family="Courier,monospace" font-size="11.00">MonitoringTest</text>
-</g>
-<!-- \\MonitoringTest&#45;&gt;\\CakeTestCase -->
-<g id="edge29" class="edge"><title>\\MonitoringTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M728.403,-321.985C708.097,-269.319 641.098,-114.946 530,-45 507.949,-31.1169 481.124,-23.6138 455.482,-19.7359"/>
-<polygon fill="none" stroke="black" points="455.724,-16.2371 445.347,-18.3769 454.793,-23.175 455.724,-16.2371"/>
-</g>
-<!-- \\MonitoringReportTest -->
-<g id="node17" class="node"><title>\\MonitoringReportTest</title>
-<polygon fill="none" stroke="black" points="811,-520 659,-520 659,-484 811,-484 811,-520"/>
-<text text-anchor="middle" x="735" y="-499.1" font-family="Courier,monospace" font-size="11.00">MonitoringReportTest</text>
-</g>
-<!-- \\MonitoringReportTest&#45;&gt;\\CakeTestCase -->
-<g id="edge31" class="edge"><title>\\MonitoringReportTest&#45;&gt;\\CakeTestCase</title>
-<path fill="none" stroke="black" d="M658.689,-501.964C637.778,-498.201 616.816,-490.335 602,-475 467.358,-335.648 667.401,-181.632 530,-45 509.228,-24.3448 479.293,-15.686 450.486,-12.8112"/>
-<polygon fill="none" stroke="black" points="450.602,-9.30978 440.361,-12.0254 450.061,-16.2888 450.602,-9.30978"/>
+<!-- \\MonitoringLog -->
+<g id="node12" class="node"><title>\\MonitoringLog</title>
+<polygon fill="none" stroke="black" points="787,-1006 683,-1006 683,-970 787,-970 787,-1006"/>
+<text text-anchor="middle" x="735" y="-985.1" font-family="Courier,monospace" font-size="11.00">MonitoringLog</text>
 </g>
 <!-- \\AppMonitoringModel -->
-<g id="node18" class="node"><title>\\AppMonitoringModel</title>
+<g id="node14" class="node"><title>\\AppMonitoringModel</title>
 <polygon fill="none" stroke="black" points="432,-979 294,-979 294,-943 432,-943 432,-979"/>
 <text text-anchor="middle" x="363" y="-958.1" font-family="Courier,monospace" font-size="11.00">AppMonitoringModel</text>
 </g>
+<!-- \\MonitoringLog&#45;&gt;\\AppMonitoringModel -->
+<g id="edge21" class="edge"><title>\\MonitoringLog&#45;&gt;\\AppMonitoringModel</title>
+<path fill="none" stroke="black" d="M682.883,-984.217C620.338,-979.678 514.827,-972.02 442.189,-966.748"/>
+<polygon fill="none" stroke="black" points="442.393,-963.253 432.166,-966.02 441.886,-970.235 442.393,-963.253"/>
+</g>
+<!-- \\Monitoring -->
+<g id="node13" class="node"><title>\\Monitoring</title>
+<polygon fill="none" stroke="black" points="777,-952 693,-952 693,-916 777,-916 777,-952"/>
+<text text-anchor="middle" x="735" y="-931.1" font-family="Courier,monospace" font-size="11.00">Monitoring</text>
+</g>
+<!-- \\Monitoring&#45;&gt;\\AppMonitoringModel -->
+<g id="edge23" class="edge"><title>\\Monitoring&#45;&gt;\\AppMonitoringModel</title>
+<path fill="none" stroke="black" d="M692.689,-937.071C631.909,-941.482 518.789,-949.693 442.204,-955.251"/>
+<polygon fill="none" stroke="black" points="441.838,-951.769 432.118,-955.983 442.345,-958.75 441.838,-951.769"/>
+</g>
 <!-- \\AppModel -->
-<g id="node44" class="node"><title>\\AppModel</title>
+<g id="node37" class="node"><title>\\AppModel</title>
 <ellipse fill="none" stroke="black" cx="62" cy="-961" rx="62.2254" ry="18.3848"/>
 <text text-anchor="middle" x="62" y="-957.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AppModel</text>
 </g>
 <!-- \\AppMonitoringModel&#45;&gt;\\AppModel -->
-<g id="edge33" class="edge"><title>\\AppMonitoringModel&#45;&gt;\\AppModel</title>
+<g id="edge25" class="edge"><title>\\AppMonitoringModel&#45;&gt;\\AppModel</title>
 <path fill="none" stroke="black" d="M293.945,-961C246.143,-961 182.655,-961 134.187,-961"/>
 <polygon fill="none" stroke="black" points="134.084,-957.5 124.084,-961 134.084,-964.5 134.084,-957.5"/>
 </g>
-<!-- \\MonitoringReport -->
-<g id="node19" class="node"><title>\\MonitoringReport</title>
-<polygon fill="none" stroke="black" points="797,-466 673,-466 673,-430 797,-430 797,-466"/>
-<text text-anchor="middle" x="735" y="-445.1" font-family="Courier,monospace" font-size="11.00">MonitoringReport</text>
+<!-- \\MonitoringSelfFailCheck -->
+<g id="node15" class="node"><title>\\MonitoringSelfFailCheck</title>
+<polygon fill="none" stroke="black" points="821,-1222 649,-1222 649,-1186 821,-1186 821,-1222"/>
+<text text-anchor="middle" x="735" y="-1201.1" font-family="Courier,monospace" font-size="11.00">MonitoringSelfFailCheck</text>
 </g>
-<!-- \\Monitoring -->
-<g id="node20" class="node"><title>\\Monitoring</title>
-<polygon fill="none" stroke="black" points="777,-1006 693,-1006 693,-970 777,-970 777,-1006"/>
-<text text-anchor="middle" x="735" y="-985.1" font-family="Courier,monospace" font-size="11.00">Monitoring</text>
+<!-- \\MonitoringSelfFailCheck&#45;&gt;\\MonitoringChecker -->
+<g id="edge27" class="edge"><title>\\MonitoringSelfFailCheck&#45;&gt;\\MonitoringChecker</title>
+<path fill="none" stroke="black" d="M648.721,-1191.48C585.286,-1182.27 499.882,-1169.87 439.008,-1161.03"/>
+<polygon fill="none" stroke="black" points="439.477,-1157.56 429.077,-1159.59 438.471,-1164.49 439.477,-1157.56"/>
 </g>
-<!-- \\Monitoring&#45;&gt;\\AppMonitoringModel -->
-<g id="edge35" class="edge"><title>\\Monitoring&#45;&gt;\\AppMonitoringModel</title>
-<path fill="none" stroke="black" d="M692.689,-984.929C631.909,-980.518 518.789,-972.307 442.204,-966.749"/>
-<polygon fill="none" stroke="black" points="442.345,-963.25 432.118,-966.017 441.838,-970.231 442.345,-963.25"/>
+<!-- \\MonitoringSelfCheck -->
+<g id="node16" class="node"><title>\\MonitoringSelfCheck</title>
+<polygon fill="none" stroke="black" points="807,-1168 663,-1168 663,-1132 807,-1132 807,-1168"/>
+<text text-anchor="middle" x="735" y="-1147.1" font-family="Courier,monospace" font-size="11.00">MonitoringSelfCheck</text>
 </g>
-<!-- \\MonitoringLog -->
-<g id="node21" class="node"><title>\\MonitoringLog</title>
-<polygon fill="none" stroke="black" points="787,-952 683,-952 683,-916 787,-916 787,-952"/>
-<text text-anchor="middle" x="735" y="-931.1" font-family="Courier,monospace" font-size="11.00">MonitoringLog</text>
+<!-- \\MonitoringSelfCheck&#45;&gt;\\MonitoringChecker -->
+<g id="edge29" class="edge"><title>\\MonitoringSelfCheck&#45;&gt;\\MonitoringChecker</title>
+<path fill="none" stroke="black" d="M662.392,-1150C598.166,-1150 504.772,-1150 439.423,-1150"/>
+<polygon fill="none" stroke="black" points="439.185,-1146.5 429.185,-1150 439.185,-1153.5 439.185,-1146.5"/>
 </g>
-<!-- \\MonitoringLog&#45;&gt;\\AppMonitoringModel -->
-<g id="edge37" class="edge"><title>\\MonitoringLog&#45;&gt;\\AppMonitoringModel</title>
-<path fill="none" stroke="black" d="M682.883,-937.783C620.338,-942.322 514.827,-949.98 442.189,-955.252"/>
-<polygon fill="none" stroke="black" points="441.886,-951.765 432.166,-955.98 442.393,-958.747 441.886,-951.765"/>
+<!-- \\MonitoringController -->
+<g id="node18" class="node"><title>\\MonitoringController</title>
+<polygon fill="none" stroke="black" points="811,-520 659,-520 659,-484 811,-484 811,-520"/>
+<text text-anchor="middle" x="735" y="-499.1" font-family="Courier,monospace" font-size="11.00">MonitoringController</text>
+</g>
+<!-- \\AppController -->
+<g id="node41" class="node"><title>\\AppController</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-126" rx="82.0244" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-122.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AppController</text>
+</g>
+<!-- \\MonitoringController&#45;&gt;\\AppController -->
+<g id="edge31" class="edge"><title>\\MonitoringController&#45;&gt;\\AppController</title>
+<path fill="none" stroke="black" d="M658.856,-501.392C638.075,-497.59 617.141,-489.846 602,-475 497.29,-372.333 636.742,-253.553 530,-153 509.152,-133.36 479.952,-124.766 451.789,-121.651"/>
+<polygon fill="none" stroke="black" points="451.747,-118.134 441.478,-120.742 451.132,-125.107 451.747,-118.134"/>
+</g>
+<!-- \\MonitoringUpdateTask -->
+<g id="node19" class="node"><title>\\MonitoringUpdateTask</title>
+<polygon fill="none" stroke="black" points="811,-466 659,-466 659,-430 811,-430 811,-466"/>
+<text text-anchor="middle" x="735" y="-445.1" font-family="Courier,monospace" font-size="11.00">MonitoringUpdateTask</text>
+</g>
+<!-- \\AdvancedTask -->
+<g id="node43" class="node"><title>\\AdvancedTask</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-72" rx="82.939" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-68.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AdvancedTask</text>
+</g>
+<!-- \\MonitoringUpdateTask&#45;&gt;\\AdvancedTask -->
+<g id="edge33" class="edge"><title>\\MonitoringUpdateTask&#45;&gt;\\AdvancedTask</title>
+<path fill="none" stroke="black" d="M658.856,-447.392C638.075,-443.59 617.141,-435.846 602,-421 497.29,-318.333 636.742,-199.553 530,-99 509.532,-79.7191 481.016,-71.0835 453.334,-67.8275"/>
+<polygon fill="none" stroke="black" points="453.476,-64.3253 443.189,-66.8616 452.812,-71.2938 453.476,-64.3253"/>
+</g>
+<!-- \\MonitoringRunTask -->
+<g id="node20" class="node"><title>\\MonitoringRunTask</title>
+<polygon fill="none" stroke="black" points="800,-412 670,-412 670,-376 800,-376 800,-412"/>
+<text text-anchor="middle" x="735" y="-391.1" font-family="Courier,monospace" font-size="11.00">MonitoringRunTask</text>
+</g>
+<!-- \\MonitoringRunTask&#45;&gt;\\AdvancedTask -->
+<g id="edge35" class="edge"><title>\\MonitoringRunTask&#45;&gt;\\AdvancedTask</title>
+<path fill="none" stroke="black" d="M669.244,-394.539C645.399,-391.455 619.943,-383.861 602,-367 512.121,-282.542 621.55,-181.644 530,-99 509.419,-80.421 481.306,-71.873 454.016,-68.4844"/>
+<polygon fill="none" stroke="black" points="454.319,-64.9972 444.014,-67.4604 453.606,-71.9608 454.319,-64.9972"/>
+</g>
+<!-- \\MonitoringShell -->
+<g id="node21" class="node"><title>\\MonitoringShell</title>
+<polygon fill="none" stroke="black" points="794,-358 676,-358 676,-322 794,-322 794,-358"/>
+<text text-anchor="middle" x="735" y="-337.1" font-family="Courier,monospace" font-size="11.00">MonitoringShell</text>
+</g>
+<!-- \\AdvancedShell -->
+<g id="node46" class="node"><title>\\AdvancedShell</title>
+<ellipse fill="none" stroke="black" cx="363" cy="-18" rx="85.7684" ry="18.3848"/>
+<text text-anchor="middle" x="363" y="-14.4" font-family="Times Roman,serif" font-size="14.00" fill="gray">\AdvancedShell</text>
+</g>
+<!-- \\MonitoringShell&#45;&gt;\\AdvancedShell -->
+<g id="edge37" class="edge"><title>\\MonitoringShell&#45;&gt;\\AdvancedShell</title>
+<path fill="none" stroke="black" d="M728.403,-321.985C708.097,-269.319 641.098,-114.946 530,-45 509.139,-31.866 484.004,-24.4421 459.642,-20.3957"/>
+<polygon fill="none" stroke="black" points="460.035,-16.9158 449.629,-18.9095 459.007,-23.8399 460.035,-16.9158"/>
 </g>
 </g>
 </svg>
