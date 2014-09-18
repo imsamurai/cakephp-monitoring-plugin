@@ -37,6 +37,7 @@ before_script:
   - git clone git://github.com/imsamurai/travis-plugin-build.git --depth 1 travis
   - chmod +x ./travis/*
   - ./travis/before_script.sh
+  - cat ../cakephp/app/Config/email.php.default | sed 's/you@localhost/travis-monitoring-plugin@imsamurai.me/' > ../cakephp/app/Config/email.php;
 
 script:
   - ./travis/script.sh
