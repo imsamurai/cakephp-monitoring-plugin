@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Monitoring Plugin for CakePHP by imsamurai</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+  </head>
+  <body>
+
+      <header>
+        <h1>Monitoring Plugin for CakePHP</h1>
+        <p>Coordinator for any checker scripts. With this plugin you can unify periodic checkers for some of your services/data/etc, get mail in case of failure, store checker logs in DB.</p>
+      </header>
+
+      <div id="banner">
+        <span id="logo"></span>
+
+        <a href="https://github.com/imsamurai/cakephp-monitoring-plugin" class="button fork"><strong>View On GitHub</strong></a>
+        <div class="downloads">
+          <span>Downloads:</span>
+          <ul>
+            <li><a href="https://github.com/imsamurai/cakephp-monitoring-plugin/zipball/master" class="button">ZIP</a></li>
+            <li><a href="https://github.com/imsamurai/cakephp-monitoring-plugin/tarball/master" class="button">TAR</a></li>
+          </ul>
+        </div>
+      </div><!-- end banner -->
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+      <section>
+        <h2>
+<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a>API Documentation</h2>
+
+<p>Check out <a href="http://imsamurai.github.io/cakephp-monitoring-plugin/docs/master/">Monitoring API Documentation</a></p>
+
+<h2>
+<a name="abstract" class="anchor" href="#abstract"><span class="octicon octicon-link"></span></a>Abstract</h2>
+
+<p><a href="https://travis-ci.org/imsamurai/cakephp-monitoring-plugin"><img src="https://travis-ci.org/imsamurai/cakephp-monitoring-plugin.png" alt="Build Status"></a> <a href="https://coveralls.io/r/imsamurai/cakephp-monitoring-plugin?branch=master"><img src="https://coveralls.io/repos/imsamurai/cakephp-monitoring-plugin/badge.png?branch=master" alt="Coverage Status"></a> <a href="https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin"><img src="https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/stable.png" alt="Latest Stable Version"></a> <a href="https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin"><img src="https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/downloads.png" alt="Total Downloads"></a> <a href="https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin"><img src="https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/unstable.png" alt="Latest Unstable Version"></a> <a href="https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin"><img src="https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/license.png" alt="License"></a></p>
+
+<p>Coordinator for any checker scripts.
+With this plugin you can unify periodic checkers for some of your services/data/etc,
+get mail in case of failure, store checker logs in DB.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<pre><code>cd my_cake_app/app
+git clone git://github.com/imsamurai/cakephp-monitoring-plugin.git Plugin/Monitoring
+</code></pre>
+
+<p>or if you use git add as submodule:</p>
+
+<pre><code>cd my_cake_app
+git submodule add "git://github.com/imsamurai/cakephp-monitoring-plugin.git" "app/Plugin/Monitoring"
+</code></pre>
+
+<p>then add plugin loading in Config/bootstrap.php</p>
+
+<pre><code>CakePlugin::load('Monitoring', array('bootstrap' =&gt; true));
+</code></pre>
+
+<p>add tables from <code>Config/Schema/monitoring.sql</code></p>
+
+<p>include
+<a href="https://github.com/symfony/Process">https://github.com/symfony/Process</a>,
+<a href="https://github.com/mtdowling/cron-expression">https://github.com/mtdowling/cron-expression</a>
+ in your project, for ex with composer (tested with 2.3 version)</p>
+
+<h2>
+<a name="configuration" class="anchor" href="#configuration"><span class="octicon octicon-link"></span></a>Configuration</h2>
+
+<p>Write global config if you need to change plugin config (see plugin bootstrap.php)</p>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>Use <code>Monitoring</code> model for manage checkers in DB.
+Each checker name in DB must be a model that extends <code>MonitoringChecker</code> and implements <code>check</code> method.
+Coordinator will run this method and store result in DB log.
+In case of error your checker may return false.
+Put <code>Console/cake Monitoring.monitoring run</code> in the cron, for ex each 1-5 minutes (depends on your needs)</p>
+
+<p>For auto add available checkers to db (inactive) run <code>Console/cake Monitoring.monitoring update</code></p>
+
+<h2>
+<a name="wiki" class="anchor" href="#wiki"><span class="octicon octicon-link"></span></a>Wiki</h2>
+
+<p>Also check out <a href="https://github.com/imsamurai/cakephp-monitoring-plugin/wiki">wiki</a>.</p>
+      </section>
+      <footer>
+        <p>Project maintained by <a href="https://github.com/imsamurai">imsamurai</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></small></p>
+      </footer>
+    </div>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-54309823-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
