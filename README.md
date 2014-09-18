@@ -1,5 +1,9 @@
-Cakephp Monitoring Plugin
-=========================
+## API Documentation
+
+Check out [Monitoring API Documentation](http://imsamurai.github.io/cakephp-monitoring-plugin/docs/master/)
+
+## Abstract
+
 [![Build Status](https://travis-ci.org/imsamurai/cakephp-monitoring-plugin.png)](https://travis-ci.org/imsamurai/cakephp-monitoring-plugin) [![Coverage Status](https://coveralls.io/repos/imsamurai/cakephp-monitoring-plugin/badge.png?branch=master)](https://coveralls.io/r/imsamurai/cakephp-monitoring-plugin?branch=master) [![Latest Stable Version](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/stable.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![Total Downloads](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/downloads.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![Latest Unstable Version](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/v/unstable.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin) [![License](https://poser.pugx.org/imsamurai/cakephp-monitoring-plugin/license.png)](https://packagist.org/packages/imsamurai/cakephp-monitoring-plugin)
 
 Coordinator for any checker scripts.
@@ -40,5 +44,7 @@ In case of error your checker may return false.
 Put `Console/cake Monitoring.monitoring run` in the cron, for ex each 1-5 minutes (depends on your needs)
 
 For auto add available checkers to db (inactive) run `Console/cake Monitoring.monitoring update`
+
+## Wiki
 
 Also check out [wiki](https://github.com/imsamurai/cakephp-monitoring-plugin/wiki).
