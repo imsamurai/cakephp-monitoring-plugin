@@ -1,12 +1,13 @@
 <?php
 
-declare(ticks = 1);
 /**
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 31.07.2014
  * Time: 16:50:33
  * Format: http://book.cakephp.org/2.0/en/development/testing.html
  */
+declare(ticks = 1);
+
 App::uses('MonitoringRunTask', 'Monitoring.Console/Command/Task');
 App::uses('Monitoring', 'Monitoring.Model');
 App::uses('MonitoringReport', 'Monitoring.Model');

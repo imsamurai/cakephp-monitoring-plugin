@@ -75,8 +75,7 @@ class Monitoring extends AppMonitoringModel {
 	 * @param int $checkerId
 	 * @param int $code
 	 * @param string $codeString
-	 * @param string $stderr
-	 * @param string $stdout
+	 * @param string $error
 	 *
 	 * @return bool True if ok
 	 */

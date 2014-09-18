@@ -4,7 +4,6 @@
  * Author: imsamurai <im.samuray@gmail.com>
  * Date: 25.07.2014
  * Time: 13:00:32
- * 
  */
 App::uses('CakeEmail', 'Network/Email');
 
@@ -13,7 +12,7 @@ App::uses('CakeEmail', 'Network/Email');
  * 
  * @property Monitoring $Monitoring Monitoring
  * @package Monitoring
- * @package Model
+ * @subpackage Model
  */
 class MonitoringReport {
 

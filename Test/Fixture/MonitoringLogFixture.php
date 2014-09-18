@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Author: imsamurai <im.samuray@gmail.com>
+ */
+
+/**
  * MonitoringLogFixture
  *
  * @package MonitoringTest

@@ -1,6 +1,10 @@
 <?php
 
 /**
+ * Author: imsamurai <im.samuray@gmail.com>
+ */
+
+/**
  * MonitoringFixture
  *
  * @package MonitoringTest
@@ -44,8 +48,6 @@ class MonitoringFixture extends CakeTestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = array(
-	);
-
+	public $records = array();
 
 }
