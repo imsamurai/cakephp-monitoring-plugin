@@ -54,8 +54,8 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				->method('_write')
 				->will($this->returnCallback(
 								function($out) {
-							$this->out .= $out;
-						})
+									$this->out .= $out;
+								})
 		);
 		$this->Error = $this->getMock('ConsoleOutput', array(
 			'_write'
@@ -64,8 +64,8 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				->method('_write')
 				->will($this->returnCallback(
 								function($out) {
-							$this->err .= $out;
-						})
+									$this->err .= $out;
+								})
 		);
 	}
 
@@ -77,12 +77,17 @@ class MonitoringRunTaskTest extends CakeTestCase {
 	 * @param string $errors
 	 * @param string $output
 	 * @param array $sendMail
+	 * @param string $exception
 	 * 
 	 * @dataProvider runProvider
 	 */
-	public function testRun(array $checkers, array $checkResults, $errors, $output, array $sendMail) {
+	public function testRun(array $checkers, array $checkResults, $errors, $output, array $sendMail, $exception) {
 		$MonitoringReport = $this->getMockForModel('Monitoring.MonitoringReport', array('send'));
-		$MonitoringReport->expects($this->exactly(count($checkers)))->method('send')->will($this->returnValueMap($sendMail));
+		if (!$exception) {
+			$MonitoringReport->expects($this->exactly(count($checkers)))->method('send')->will($this->returnValueMap($sendMail));
+		} else {
+			$MonitoringReport->expects($this->exactly(count($checkers)))->method('send')->willThrowException(new Exception($exception));
+		}
 
 		$Monitoring = $this->getMockForModel('Monitoring.Monitoring', array(
 			'getActiveCheckers',
@@ -139,7 +144,9 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				//sendMail
 				array(
 					array(1, true)
-				)
+				),
+				//exception
+				null
 			),
 			//set #1
 			array(
@@ -181,7 +188,9 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				array(
 					array(1, null),
 					array(2, true),
-				)
+				),
+				//exception
+				null
 			),
 			//set #2
 			array(
@@ -208,9 +217,51 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				//sendMail
 				array(
 					array(2, false),
-				)
+				),
+				//exception
+				null
+			),
+			//set #3
+			array(
+				//checkers
+				array(
+					array(
+						'id' => 2,
+						'timeout' => 2,
+						'class' => 'MonitoringRunTaskTestCheckerFalse',
+						'name' => 'MonitoringRunTaskTestCheckerFalse',
+						'settings' => array()
+					)
+				),
+				//checkResults
+				array(
+					array(2, 'FAIL', 'my fault!', false),
+				),
+				//errors
+				"%sError%s 'MonitoringRunTaskTestCheckerFalse'" .
+				"\n" .
+				"%ssome exception message%s" .
+				"\n" .
+				"%sFail to sent mail%s 'MonitoringRunTaskTestCheckerFalse'",
+				//output
+				"%sRun%s 'MonitoringRunTaskTestCheckerFalse'",
+				//sendMail
+				array(
+					array(2, false),
+				),
+				//exception
+				'some exception message'
 			),
 		);
+	}
+
+	/**
+	 * Test option parser
+	 */
+	public function testGetOptionParser() {
+		$Runner = new MonitoringRunTask($this->Output, $this->Error);
+		$OptonParser = $Runner->getOptionParser();
+		$this->assertSame('Runs active checkers', $OptonParser->description());
 	}
 
 }

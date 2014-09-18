@@ -68,6 +68,24 @@ class MonitoringReportTest extends CakeTestCase {
 					},
 				),
 			),
+			'sms' => array(
+				'enabled' => array(
+					'fail' => true,
+					'stillFail' => true,
+					'success' => true,
+					'backToNormal' => true,
+				),
+				'subject' => array(
+					'fail' => 'Monitoring: %s is fail!',
+					'stillFail' => 'Monitoring: %s still failing!',
+					'success' => 'Monitoring: %s is ok!',
+					'backToNormal' => function($checker) {
+						return "Monitoring: {$checker['name']} back to normal!";
+					},
+				),
+				'source' => 'MonitoringPlugin',
+				'desc' => 'Monitoring'
+			),
 			'views' => array(
 				'pluginFirst' => true
 			)
@@ -89,7 +107,7 @@ class MonitoringReportTest extends CakeTestCase {
 		foreach ($logs as $log) {
 			$this->Monitoring->saveCheckResults($checker['id'], $log['code'], $log['error']);
 		}
-		
+
 		$Report = $this->getMock('MonitoringReport', array(
 			'_getMailer'
 		));
@@ -100,7 +118,7 @@ class MonitoringReportTest extends CakeTestCase {
 		$success = $Report->send($checker['id']);
 		$this->assertNull($success);
 	}
-	
+
 	/**
 	 * Data provider for testNoSend
 	 * 
@@ -115,7 +133,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true					
+					'active' => true
 				),
 				//logs
 				array(
@@ -141,7 +159,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -167,7 +185,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -197,7 +215,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -227,7 +245,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => false					
+					'active' => false
 				),
 				//logs
 				array(
@@ -253,7 +271,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => false			
+					'active' => false
 				),
 				//logs
 				array(
@@ -279,7 +297,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => false			
+					'active' => false
 				),
 				//logs
 				array(
@@ -309,7 +327,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => false			
+					'active' => false
 				),
 				//logs
 				array(
@@ -339,7 +357,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => ' ',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -369,7 +387,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => ' ',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -394,7 +412,7 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'active' => true
 				),
 				//logs
 				array(
@@ -457,14 +475,36 @@ class MonitoringReportTest extends CakeTestCase {
 				->method('transportClass')
 				->will($this->returnValue($MailTransport));
 
+		$SmsMailer = $this->getMock('Object', array(
+			'sendSMS'
+		));
+
+		$SmsMailer
+				->expects($this->once())
+				->method('sendSMS')
+				->with('MonitoringPlugin', array(
+					(is_callable($subject) ? $subject($checker) : $subject) . '(' . Configure::read('App.fullBaseUrl') . ')' => array($checker['sms'])
+						), 'Monitoring')
+				->willReturn(true);
+
 		$Report = $this->getMock('MonitoringReport', array(
-			'_getMailer'
+			'_getMailer',
+			'isSMSEnabled',
+			'_getSMSMailer'
 		));
 
 		$Report
 				->expects($this->once())
 				->method('_getMailer')
 				->will($this->returnValue($Mailer));
+		$Report
+				->expects($this->once())
+				->method('_getSMSMailer')
+				->will($this->returnValue($SmsMailer));
+		$Report
+				->expects($this->once())
+				->method('isSMSEnabled')
+				->willReturn(true);
 		$success = $Report->send($checker['id']);
 		$this->assertTrue($success);
 	}
@@ -483,7 +523,8 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true					
+					'sms' => '+380123456789',
+					'active' => true
 				),
 				//logs
 				array(
@@ -523,7 +564,8 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'sms' => '+380123456789',
+					'active' => true
 				),
 				//logs
 				array(
@@ -563,7 +605,8 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'sms' => '+380123456789',
+					'active' => true
 				),
 				//logs
 				array(
@@ -607,7 +650,8 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'checker',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'sms' => '+380123456789',
+					'active' => true
 				),
 				//logs
 				array(
@@ -651,7 +695,8 @@ class MonitoringReportTest extends CakeTestCase {
 					'id' => 1,
 					'class' => 'Monitoring.MonitoringSelfCheck',
 					'emails' => 'im.samuray@gmail.com',
-					'active' => true			
+					'sms' => '+380123456789',
+					'active' => true
 				),
 				//logs
 				array(
@@ -691,7 +736,7 @@ class MonitoringReportTest extends CakeTestCase {
 			),
 		);
 	}
-	
+
 	/**
 	 * Test case if checker not Z
 	 */
