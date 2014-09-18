@@ -7,6 +7,8 @@
  * Format: http://book.cakephp.org/2.0/en/controllers.html
  */
 
+App::uses('AppController', 'Controller');
+
 /**
  * Monitoring controller
  * 
