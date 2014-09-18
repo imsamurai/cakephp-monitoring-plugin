@@ -11,7 +11,10 @@ App::uses('CakeEmail', 'Network/Email');
 App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
- * @package Monitoring.Console.Command.Task
+ * Task for executing all checkers
+ * 
+ * @package Monitoring
+ * @subpackage Console.Command.Task
  * 
  * @property Monitoring $Monitoring Monitoring model
  * @property MonitoringReport $MonitoringReport MonitoringReport model

@@ -3,7 +3,8 @@
 /**
  * MonitoringLogFixture
  *
- * @package Monitoring.Test.Fixture
+ * @package MonitoringTest
+ * @subpackage Fixture
  */
 class MonitoringLogFixture extends CakeTestFixture {
 
@@ -33,7 +34,6 @@ class MonitoringLogFixture extends CakeTestFixture {
 	 *
 	 * @var array
 	 */
-	public $records = array(
-	);
+	public $records = array();
 
 }

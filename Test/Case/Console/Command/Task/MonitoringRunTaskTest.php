@@ -1,4 +1,5 @@
 <?php
+
 declare(ticks = 1);
 /**
  * Author: imsamurai <im.samuray@gmail.com>
@@ -20,7 +21,8 @@ App::uses('ConsoleOutput', 'Console');
  * @property ConsoleOutput $Output Standart output
  * @property ConsoleOutput $Error Errors output
  * 
- * @package Monitoring.Test
+ * @package MonitoringTest
+ * @subpackage Console.Command.Task
  */
 class MonitoringRunTaskTest extends CakeTestCase {
 
@@ -51,8 +53,8 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				->method('_write')
 				->will($this->returnCallback(
 								function($out) {
-									$this->out .= $out;
-								})
+							$this->out .= $out;
+						})
 		);
 		$this->Error = $this->getMock('ConsoleOutput', array(
 			'_write'
@@ -61,8 +63,8 @@ class MonitoringRunTaskTest extends CakeTestCase {
 				->method('_write')
 				->will($this->returnCallback(
 								function($out) {
-									$this->err .= $out;
-								})
+							$this->err .= $out;
+						})
 		);
 	}
 
@@ -212,6 +214,12 @@ class MonitoringRunTaskTest extends CakeTestCase {
 
 }
 
+/**
+ * MonitoringRunTaskTestCheckerTimeouted
+ * 
+ * @package MonitoringTest
+ * @subpackage Console.Command.Task
+ */
 class MonitoringRunTaskTestCheckerTimeouted extends MonitoringChecker {
 
 	/**
@@ -219,12 +227,19 @@ class MonitoringRunTaskTestCheckerTimeouted extends MonitoringChecker {
 	 */
 	public function check() {
 		while (true) {
+			
 		}
 		return true;
 	}
 
 }
 
+/**
+ * MonitoringRunTaskTestCheckerTrue
+ * 
+ * @package MonitoringTest
+ * @subpackage Console.Command.Task
+ */
 class MonitoringRunTaskTestCheckerTrue extends MonitoringChecker {
 
 	/**
@@ -236,6 +251,12 @@ class MonitoringRunTaskTestCheckerTrue extends MonitoringChecker {
 
 }
 
+/**
+ * MonitoringRunTaskTestCheckerFalse
+ * 
+ * @package MonitoringTest
+ * @subpackage Console.Command.Task
+ */
 class MonitoringRunTaskTestCheckerFalse extends MonitoringChecker {
 
 	/**

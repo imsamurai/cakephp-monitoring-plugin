@@ -3,7 +3,8 @@
 /**
  * MonitoringFixture
  *
- * @package Monitoring.Test.Fixture
+ * @package MonitoringTest
+ * @subpackage Fixture
  */
 class MonitoringFixture extends CakeTestFixture {
 

@@ -8,11 +8,13 @@
  */
 
 /**
+ * Monitoring controller
  * 
  * @property Monitoring $Monitoring Monitoring model
  * @property MonitoringReport $MonitoringReport Monitoring report model
  * 
- * @subpackage name Monitoring.Controller
+ * @package Monitoring
+ * @subpackage Controller
  */
 class MonitoringController extends AppController {
 

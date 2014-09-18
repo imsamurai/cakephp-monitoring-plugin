@@ -10,7 +10,10 @@ App::uses('AppMonitoringModel', 'Monitoring.Model');
 App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
- * @package Monitoring.Model
+ * Monitoring model
+ * 
+ * @package Monitoring
+ * @subpackage Model
  */
 class Monitoring extends AppMonitoringModel {
 

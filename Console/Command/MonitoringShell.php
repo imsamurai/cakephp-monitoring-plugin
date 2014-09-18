@@ -9,7 +9,10 @@
 App::uses('AdvancedShell', 'AdvancedShell.Console/Command');
 
 /**
- * @package Monitoring.Console.Command
+ * Monitoring shell
+ * 
+ * @package Monitoring
+ * @subpackage Console.Command
  */
 class MonitoringShell extends AdvancedShell {
 

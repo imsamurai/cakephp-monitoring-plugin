@@ -8,7 +8,10 @@
  */
 
 /**
- * @package Monitoring.Lib
+ * Main class for checkers
+ * 
+ * @package Monitoring
+ * @subpackage Monitoring
  */
 abstract class MonitoringChecker {
 

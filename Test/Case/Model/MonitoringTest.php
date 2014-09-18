@@ -14,7 +14,8 @@ App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
  * 
  * @property Monitoring $Monitoring Monitoring model
  * 
- * @package Monitoring.Test.Case.Model
+ * @package MonitoringTest
+ * @subpackage Model
  */
 class MonitoringTest extends CakeTestCase {
 
@@ -237,6 +238,9 @@ class MonitoringTest extends CakeTestCase {
 		);
 	}
 
+	/**
+	 * Test find all checker classes
+	 */
 	public function testFindAllCheckerClasses() {
 		$classes = $this->Monitoring->findAllCheckerClasses();
 		$this->assertNotEmpty($classes);
@@ -246,6 +250,9 @@ class MonitoringTest extends CakeTestCase {
 				))) === 2);
 	}
 
+	/**
+	 * Test find new checkers
+	 */
 	public function testFindNewCheckers() {
 		$this->Monitoring->add('Monitoring.MonitoringSelfCheck');
 		$classes = $this->Monitoring->findNewCheckers();

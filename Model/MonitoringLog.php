@@ -9,7 +9,10 @@
 App::uses('AppMonitoringModel', 'Monitoring.Model');
 
 /**
- * @package Monitoring.Model
+ * Monitoring logging
+ * 
+ * @package Monitoring
+ * @subpackage Model
  */
 class MonitoringLog extends AppMonitoringModel {
 

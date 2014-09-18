@@ -10,7 +10,8 @@
 /**
  * AllMonitoringTest
  * 
- * @package Monitoring.Test.Case
+ * @package MonitoringTest
+ * @subpackage Test
  */
 class AllMonitoringTest extends PHPUnit_Framework_TestSuite {
 

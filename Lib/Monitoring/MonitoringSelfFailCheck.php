@@ -10,7 +10,10 @@ declare(ticks = 1);
 App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
 
 /**
- * @package Monitoring.Lib.Checker
+ * Always fail checker, for test purposes
+ * 
+ * @package Monitoring
+ * @subpackage Monitoring
  */
 class MonitoringSelfFailCheck extends MonitoringChecker {
 

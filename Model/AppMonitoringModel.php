@@ -8,7 +8,10 @@
  */
 
 /**
- * @package Monitoring.Model
+ * Base monitoring model
+ * 
+ * @package Monitoring
+ * @subpackage Model
  */
 class AppMonitoringModel extends AppModel {
 

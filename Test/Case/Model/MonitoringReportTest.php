@@ -17,7 +17,8 @@ App::uses('MonitoringChecker', 'Monitoring.Lib/Monitoring');
  * @property Monitoring $Monitoring Monitoring model
  * @property MonitoringReport $Report Monitoring Report model
  * 
- * @package Monitoring.Test.Case.Model
+ * @package MonitoringTest
+ * @subpackage Model
  */
 class MonitoringReportTest extends CakeTestCase {
 

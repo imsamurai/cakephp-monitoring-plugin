@@ -12,6 +12,8 @@ App::uses('CakeEmail', 'Network/Email');
  * Monitoring Report
  * 
  * @property Monitoring $Monitoring Monitoring
+ * @package Monitoring
+ * @package Model
  */
 class MonitoringReport {
 

@@ -9,7 +9,10 @@
 App::uses('AdvancedTask', 'AdvancedShell.Console/Command/Task');
 
 /**
- * @package Monitoring.Console.Command.Task
+ * Task for syncronize all new monitorings
+ * 
+ * @package Monitoring
+ * @subpackage Console.Command.Task
  * 
  * @property Monitoring $Monitoring
  */
