@@ -22,7 +22,7 @@ class MonitoringReport extends AppMonitoringModel {
 	 *
 	 * @var string
 	 */
-	public $name = 'Monitoring';
+	public $name = 'MonitoringReport';
 	
 	/**
 	 * {@inheritdoc}
