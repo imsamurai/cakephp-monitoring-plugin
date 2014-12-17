@@ -14,8 +14,22 @@ App::uses('CakeEmail', 'Network/Email');
  * @package Monitoring
  * @subpackage Model
  */
-class MonitoringReport {
+class MonitoringReport extends AppMonitoringModel {
 
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var string
+	 */
+	public $name = 'Monitoring';
+	
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @var bool
+	 */
+	public $useTable = false;
+	
 	/**
 	 * Constructor
 	 */
