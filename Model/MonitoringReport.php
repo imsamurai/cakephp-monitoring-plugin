@@ -6,6 +6,7 @@
  * Time: 13:00:32
  */
 App::uses('CakeEmail', 'Network/Email');
+App::uses('AppMonitoringModel', 'Monitoring.Model');
 
 /**
  * Monitoring Report
