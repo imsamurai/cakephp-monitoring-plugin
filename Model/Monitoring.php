@@ -47,6 +47,7 @@ class Monitoring extends AppMonitoringModel {
 	 * 
 	 * @param array $checker
 	 * @return array
+	 * @throws Exception
 	 */
 	public function run(array $checker) {
 		try {
