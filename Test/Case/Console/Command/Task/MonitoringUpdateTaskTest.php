@@ -113,9 +113,9 @@ class MonitoringUpdateTaskTest extends CakeTestCase {
 					array('c5', false),
 				),
 				//errors
-				"%sNot added%s c2\n%sNot added%s c4\n%sNot added%s c5\n",
+				"%SNot added%S c2\n%SNot added%S c4\n%SNot added%S c5\n",
 				//output
-				"%sAdded%s c1\n%sAdded%s c3\n"
+				"%SAdded%S c1\n%SAdded%S c3\n"
 			),
 		);
 	}

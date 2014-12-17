@@ -137,10 +137,10 @@ class MonitoringRunTaskTest extends CakeTestCase {
 					array(1, 'OK', '', true)
 				),
 				//errors
-				"%sError%s 'MonitoringRunTaskTestCheckerTimeouted'",
+				"%SError%S 'MonitoringRunTaskTestCheckerTimeouted'",
 				//output
-				"%sRun%s 'MonitoringRunTaskTestCheckerTimeouted'\n" .
-				"%sSent mail%s for 'MonitoringRunTaskTestCheckerTimeouted'",
+				"%SRun%S 'MonitoringRunTaskTestCheckerTimeouted'\n" .
+				"%SSent mail%S for 'MonitoringRunTaskTestCheckerTimeouted'",
 				//sendMail
 				array(
 					array(1, true)
@@ -173,17 +173,17 @@ class MonitoringRunTaskTest extends CakeTestCase {
 					array(2, 'FAIL', 'my fault!', false),
 				),
 				//errors
-				"%sError%s 'MonitoringRunTaskTestCheckerFalse'",
+				"%SError%S 'MonitoringRunTaskTestCheckerFalse'",
 				//output
-				"%sRun%s 'MonitoringRunTaskTestCheckerTrue'" .
+				"%SRun%S 'MonitoringRunTaskTestCheckerTrue'" .
 				"\n" .
-				"%sOK%s 'MonitoringRunTaskTestCheckerTrue'" .
+				"%SOK%S 'MonitoringRunTaskTestCheckerTrue'" .
 				"\n" .
-				"%sMail not sent%s for 'MonitoringRunTaskTestCheckerTrue'" .
+				"%SMail not sent%S for 'MonitoringRunTaskTestCheckerTrue'" .
 				"\n" .
-				"%sRun%s 'MonitoringRunTaskTestCheckerFalse'" .
+				"%SRun%S 'MonitoringRunTaskTestCheckerFalse'" .
 				"\n" .
-				"%sSent mail%s for 'MonitoringRunTaskTestCheckerFalse'",
+				"%SSent mail%S for 'MonitoringRunTaskTestCheckerFalse'",
 				//sendMail
 				array(
 					array(1, null),
@@ -209,11 +209,11 @@ class MonitoringRunTaskTest extends CakeTestCase {
 					array(2, 'FAIL', 'my fault!', false),
 				),
 				//errors
-				"%sError%s 'MonitoringRunTaskTestCheckerFalse'" .
+				"%SError%S 'MonitoringRunTaskTestCheckerFalse'" .
 				"\n" .
-				"%sFail to sent mail%s 'MonitoringRunTaskTestCheckerFalse'",
+				"%SFail to sent mail%S 'MonitoringRunTaskTestCheckerFalse'",
 				//output
-				"%sRun%s 'MonitoringRunTaskTestCheckerFalse'",
+				"%SRun%S 'MonitoringRunTaskTestCheckerFalse'",
 				//sendMail
 				array(
 					array(2, false),
@@ -238,13 +238,13 @@ class MonitoringRunTaskTest extends CakeTestCase {
 					array(2, 'FAIL', 'my fault!', false),
 				),
 				//errors
-				"%sError%s 'MonitoringRunTaskTestCheckerFalse'" .
+				"%SError%S 'MonitoringRunTaskTestCheckerFalse'" .
 				"\n" .
-				"%ssome exception message%s" .
+				"%Ssome exception message%S" .
 				"\n" .
-				"%sFail to sent mail%s 'MonitoringRunTaskTestCheckerFalse'",
+				"%SFail to sent mail%S 'MonitoringRunTaskTestCheckerFalse'",
 				//output
-				"%sRun%s 'MonitoringRunTaskTestCheckerFalse'",
+				"%SRun%S 'MonitoringRunTaskTestCheckerFalse'",
 				//sendMail
 				array(
 					array(2, false),
