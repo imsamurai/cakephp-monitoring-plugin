@@ -38,6 +38,25 @@ class MonitoringUpdateTask extends AdvancedTask {
 	 */
 	public function execute() {
 		parent::execute();
+		$this->_addNew();
+		$this->_removeAbsent();
+	}
+
+	/**
+	 * {@inheritdoc}
+	 *
+	 * @return ConsoleOptionParser
+	 */
+	public function getOptionParser() {
+		$parser = parent::getOptionParser();
+		$parser->description('Update all new checkers');
+		return $parser;
+	}
+
+	/**
+	 * Add new checkers
+	 */
+	protected function _addNew() {
 		$checkers = $this->Monitoring->findNewCheckers();
 		foreach ($checkers as $checker) {
 			$success = $this->Monitoring->add($checker);
@@ -50,14 +69,23 @@ class MonitoringUpdateTask extends AdvancedTask {
 	}
 
 	/**
-	 * {@inheritdoc}
-	 *
-	 * @return ConsoleOptionParser
+	 * Remove abscent checkers
 	 */
-	public function getOptionParser() {
-		$parser = parent::getOptionParser();
-		$parser->description('Update all new checkers');
-		return $parser;
+	protected function _removeAbsent() {
+		$allCheckers = $this->Monitoring->findAllCheckerClasses();
+		$checkers = $this->Monitoring->find('list', array('fields' => array('class')));
+		$absentCheckers = array_diff(array_values($checkers), $allCheckers);
+		if (!$absentCheckers) {
+			return;
+		}
+		$success = (bool)$this->Monitoring->deleteAll(array(
+					'class' => $absentCheckers
+		), true, true);
+		if ($success) {
+			$this->out("<ok>Removed absent checkers (" . implode(', ', $absentCheckers) . ")</ok>");
+		} else {
+			$this->err("<error>Can't remove absent checkers</error>");
+		}
 	}
 
 }

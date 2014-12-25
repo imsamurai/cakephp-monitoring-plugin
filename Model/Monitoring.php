@@ -29,8 +29,13 @@ class Monitoring extends AppMonitoringModel {
 	 *
 	 * @var array
 	 */
-	public $hasMany = array('Monitoring.MonitoringLog');
-	
+	public $hasMany = array(
+		'MonitoringLog' => array(
+			'className' => 'Monitoring.MonitoringLog',
+			'dependent' => true
+		)
+	);
+
 	/**
 	 * {@inheritdoc}
 	 *
