@@ -265,7 +265,7 @@
                                             <a id="method_testUpdate"></a>
                         <div class="element clickable method public  method_testUpdate" data-toggle="collapse" data-target=".method_testUpdate .collapse">
                             <h2>Test update</h2>
-                            <pre>testUpdate(array $checkers, array $successes, string $errors, string $output) </pre>
+                            <pre>testUpdate(array $checkersInDB, array $absentCheckers, boolean $absentCheckersSuccess, array $checkers, array $successes, string $errors, string $output) </pre>
                             <div class="labels">
                                                                                                                                                                                             </div>
 
@@ -294,6 +294,18 @@
                                                                             </table>
 
                                                                             <h3>Arguments</h3>
+                                                                                    <div class="subelement argument">
+                                                <h4>$checkersInDB</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$absentCheckers</h4>
+                                                <code>array</code><p></p>
+                                            </div>
+                                                                                    <div class="subelement argument">
+                                                <h4>$absentCheckersSuccess</h4>
+                                                <code>boolean</code><p></p>
+                                            </div>
                                                                                     <div class="subelement argument">
                                                 <h4>$checkers</h4>
                                                 <code>array</code><p></p>
@@ -467,7 +479,7 @@
             Template is built using <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap 2</a> and icons provided by
             <a href="http://glyphicons.com/">Glyphicons</a>.<br/>
             Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and<br/>
-            generated on Wed, 17 Dec 2014 16:24:38 +0000.<br/>
+            generated on Thu, 25 Dec 2014 10:40:54 +0000.<br/>
     </footer>
     </body>
 </html>
